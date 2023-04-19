@@ -27,7 +27,7 @@ class UserLogin{
     $this->user = $user;
 
     if($this->user->login()){
-
+      echo "Damaino";
       $this->user->getMembershipProvider()->login();
 
       // We could do an authorization check to validate that the user has access privileges to the resource or data

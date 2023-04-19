@@ -37,7 +37,7 @@ class User{
         // As a note we should check if the user already exists before creating the user
         // a constraint may be put in the database to prohibit duplicate users with the same username
 
-        $query = "INSERT INTO Users (username, password, firstName, lastName, email, isAdmin) 
+        $query = "INSERT INTO user (username, password, firstName, lastName, email, isAdmin) 
         VALUES(:username, :password, :firstName, :lastName, :email, :isAdmin)";
 
         $statement = $this->dbConnection->prepare($query);
@@ -55,8 +55,8 @@ class User{
         // $statement->bindParam(':username', $this->username, PDO::PARAM_STR);
 
         $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
-
-        return $statement->execute(['username' => $this->username, 'password'=> $hashedPassword, 'firstName'=> $this->firstName, 'lastName'=> $this->lastName,
+        echo $this->lname;
+        return $statement->execute(['username' => $this->username, 'password'=> $hashedPassword, 'firstName'=> $this->fname, 'lastName'=> $this->lname,
             'email' => $this->email, 'isAdmin' => $this->isAdmin]);
 
     }
@@ -68,14 +68,16 @@ class User{
         $verified = false;
 
         $dbPassword = $this->getPasswordByUsername();
+        $answer = password_verify('robcan', '$2y$10$N59lEgyHaJ2PK.NJT28EBuh');
+        echo $answer;
 
-        if(password_verify($this->password, $dbPassword)){
+        // if(password_verify($this->password, $dbPassword)){
+        //     echo 'true';
+        //     $verified = true;
 
-            $verified = true;
+        // }
 
-        }
-
-        return $verified;
+        // return $verified;
         
     }
 
@@ -87,7 +89,7 @@ class User{
 
     function getPasswordByUsername(){
 
-        $query = "SELECT password FROM Users WHERE username = :username";
+        $query = "SELECT password FROM user WHERE username = :username";
 
         $statement = $this->dbConnection->prepare($query);
         
@@ -103,7 +105,7 @@ class User{
 
     function getUserByUsername($username){
 
-        $query = "SELECT * FROM Users WHERE username = :username";
+        $query = "SELECT * FROM user WHERE username = :username";
 
         $statement = $this->dbConnection->prepare($query);
         
@@ -130,7 +132,7 @@ class User{
 
     private function saveotpSecretKey(){
 
-        $query = "UPDATE Users SET otpsecretkey = :otpsecretkey WHERE user_id = :user_id";
+        $query = "UPDATE user SET otpsecretkey = :otpsecretkey WHERE user_id = :user_id";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -177,11 +179,11 @@ class User{
     }
 
     public function getLName(){
-        return $this->fname;
+        return $this->lname;
     }
 
-    public function setLName($fName){
-        $this->fname = $fName;
+    public function setLName($LName){
+        $this->lname = $LName;
     }
 
     public function getEmail(){

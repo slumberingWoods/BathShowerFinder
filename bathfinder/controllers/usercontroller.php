@@ -56,7 +56,9 @@ class UserController{
                             $this->user->setEmail($_POST['email']);
                             
                             if (isset($_POST['isAdmin'])){
-                                $this->user->setIsAdmin($_POST['isAdmin']);
+                                    $this->user->setIsAdmin(true);
+                            }else{
+                                $this->user->setIsAdmin(false);
                             }
 
                             // Based on the action determine which Model function to call

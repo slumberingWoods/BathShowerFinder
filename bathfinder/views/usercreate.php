@@ -20,7 +20,7 @@
 </form>
 
 <h2> Already registered?</h2>
-<a href="http://localhost/hrapp/index.php?resource=user&action=login">Login</a>
+<a href="http://localhost/bathfinder/index.php?resource=user&action=login">Login</a>
 
 <?php
 
