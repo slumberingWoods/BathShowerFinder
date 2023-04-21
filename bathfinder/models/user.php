@@ -10,11 +10,13 @@ class User{
     private $user_id;
     private $username;
     private $password;
+    private $tempPass;
     private $fname;
     private $lname;
     private $email;
     private $isAdmin;
     private $otpsecretkey;
+    private $isCreated;
 
     private $otpcodeisvalid;
 
@@ -30,6 +32,14 @@ class User{
 
         $this->membershipProvider = new \membershipprovider\MembershipProvider($this);
 
+    }
+
+    public function getIsCreated(){
+        return $this->isCreated;
+    }
+
+    public function setIsCreated($isCreated){
+        $this->isCreated = $isCreated;
     }
 
     function create(){
@@ -53,9 +63,10 @@ class User{
 
         // Another option is to use the bindParam function instead of passing the actual values to the execute function
         // $statement->bindParam(':username', $this->username, PDO::PARAM_STR);
-
+        //export_var($_POST['password']);
+        
         $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
-        echo $this->lname;
+        $this->setIsCreated(true);
         return $statement->execute(['username' => $this->username, 'password'=> $hashedPassword, 'firstName'=> $this->fname, 'lastName'=> $this->lname,
             'email' => $this->email, 'isAdmin' => $this->isAdmin]);
 
@@ -68,16 +79,18 @@ class User{
         $verified = false;
 
         $dbPassword = $this->getPasswordByUsername();
-        $answer = password_verify('robcan', '$2y$10$N59lEgyHaJ2PK.NJT28EBuh');
-        echo $answer;
+        // $answer = password_verify($this->password, $dbPassword);
+        // echo $answer;
+        echo " ";
+        echo $this->password;
+        echo $dbPassword;
+        if(password_verify($this->password, $dbPassword)){
+            echo 'true';
+            $verified = true;
 
-        // if(password_verify($this->password, $dbPassword)){
-        //     echo 'true';
-        //     $verified = true;
+        }
 
-        // }
-
-        // return $verified;
+        return $verified;
         
     }
 
@@ -218,6 +231,14 @@ class User{
 
         return $this->otpcodeisvalid;
         
+    }
+
+    public function getTempPass(){
+        return $this->tempPass;
+    }
+
+    public function setTempPass($pass){
+        $this->tempPass = $pass;
     }
 
 }

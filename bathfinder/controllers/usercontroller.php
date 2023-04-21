@@ -28,8 +28,10 @@ class UserController{
                             $this->user->setUsername($_POST['username']);
 
                             $this->user = $this->user->getUserByUsername($_POST['username'])[0];
-
+                         
                             $this->user->setPassword($_POST['password']);
+                            echo "tf";
+                            echo $this->user->getPassword();
 
                             // Based on the action determine which Model function to call
                             // We have two options:
@@ -46,7 +48,8 @@ class UserController{
                             isset($_POST['email'])){
 
                             $this->user->setUsername($_POST['username']);
-
+                            
+                            echo "This is the password".$_POST['password'];
                             $this->user->setPassword($_POST['password']);
 
                             $this->user->setFName($_POST['fname']);

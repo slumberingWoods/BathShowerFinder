@@ -17,7 +17,7 @@ class UserSetupTwofa{
     function render(){
 
         $qrcodeimageURL= \TokenAuth6238::getBarCodeUrl($this->user->getUsername(), 'localhost', $this->user->getOTPsecretkey(), 'bathfinder');
-
+        //echo "This is the password:".$_POST['password'];
         echo 'Download the authenticator app:';
         echo '</br>';
         echo 'Either the Google authenticator app';

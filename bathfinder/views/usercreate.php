@@ -34,7 +34,7 @@ class UserCreate{
 
     
 
-    if($this->user->login()){
+    if($this->user->getIsCreated()){
 
     $this->user->getMembershipProvider()->login();
 
