@@ -32,37 +32,7 @@
 <body>
 <?php
 
-// The bathtub data will be passed by the controller to this view
-
-// require(dirname(__DIR__)."/models/bathtub.php");
-/*
-    $bathtub = new Bathtub();
-
-    $bathtubs = $bathtub->getAll();
-*/
-
 class BathtubList{
-
-  // The view will receive the data that needs to be displayed
-  // And it may receive additional data such as messages to display e.g., error messages
-
-  // To make the view's function accomodate for a variable type of data we could:
-  // 1- Either make the render function accept a variable number of parameters:
-  // function render(...$data)
-  // 2- OR define the parameters as an array
-
-
-  // Implementing Login Check
-  // we need to acces the user object and the membership provider from this view
-  // the user object and the user used in the membership provider class need to be the same
-  // we could either get the membership provider through the user or get the user's 
-  // security context from the membership provider 
-  // to make sure the data we are working on is consistent
- 
-  // Note on Dependency Injection:
-  // We will not instantiate the user class directly in the view
-  // but we will pass an instance from the controller
-  // this is called dependency injection, where the View is dependent on the user thus the user is the dependency
 
   private $user;
 
@@ -79,31 +49,13 @@ class BathtubList{
       }else{//user not logged in
 
         header('HTTP/1.1 401 Unauthorized');
-        header('Location: http://localhost/hrapp/index.php?resource=user&action=login');
+        header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
         
       } 
   }
   
   function render(...$data){
 
-    
-/*
-    The target HTML should look like:
-
-    <table>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <tr>
-            <td>John Smith</>
-            <td>1234456789</>
-            <td>john@gmail.com</td>
-        </tr>
-    </table>
-
-*/
-
-    // Display the Welcome message
     echo $this->welcomeMessage;
     echo '<br/>';
 
@@ -140,7 +92,6 @@ class BathtubList{
                 <th>RegionAvailable</th>
                 <th>Price</th>";
 
-    // Loop and fill the table with data from the database
     foreach($bathtubs as $b){
         
         $html .=  "<tr>
@@ -172,19 +123,15 @@ class BathtubList{
                     <td>".$b['RegionAvailable']."</td>
                     <td>".$b['Price']."</td>
                     </tr>";
-    }// end foreach
+    }
 
     $html .= "</table>";
 
     echo $html;
 
-
   }  
 
-
 }
-
-
 
 ?>
 

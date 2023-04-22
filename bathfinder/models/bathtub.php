@@ -160,6 +160,25 @@ class Bathtub{
                     $DimHMin = 0;
                 }
 
+                if(isset($_POST['FrontModel'])) {
+                    $FrontModel = $_POST['FrontModel'];
+                }
+                if(isset($_POST['BackModel'])) {
+                    $BackModel = $_POST['BackModel'];
+                }
+                if(isset($_POST['Side'])) {
+                    $Side = $_POST['Side'];
+                }
+                if(isset($_POST['Material'])) {
+                    $Material = $_POST['Material'];
+                }
+                if(isset($_POST['Family'])) {
+                    $Family = $_POST['Family'];
+                }
+                if(isset($_POST['NoMold'])) {
+                    $NoMold = $_POST['NoMold'];
+                }
+
                     $query = "select * from bathtub where DimA >= $DimAMin and DimA <= $DimAMax and 
                     DimB >= $DimBMin and DimB <= $DimBMax and 
                     DimC >= $DimCMin and DimC <= $DimCMax and 
@@ -167,7 +186,13 @@ class Bathtub{
                     DimE >= $DimEMin and DimE <= $DimEMax and 
                     DimF >= $DimFMin and DimF <= $DimFMax and 
                     DimG >= $DimGMin and DimG <= $DimGMax and 
-                    DimH >= $DimHMin and DimH <= $DimHMax";
+                    DimH >= $DimHMin and DimH <= $DimHMax and
+                    FrontName like '%$FrontModel%' and
+                    BackName like '%$BackModel%' and
+                    SideName like '%$Side%' and
+                    MatTubName like '%$Material%' and
+                    MoldName like '%$Family%' and
+                    NoMold like '%$NoMold%'";
 
                     $statement = $this->dbConnection->prepare($query);
 
