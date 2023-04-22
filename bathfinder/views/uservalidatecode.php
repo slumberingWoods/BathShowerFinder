@@ -23,7 +23,7 @@ class UserValidatecode{
         if(isset($_POST['twofacode'])){
             if($this->user->getOTPcodeisvalid()){
 
-                header('Location: http://google.com');
+                header('Location: http://localhost/bathfinder/index.php?resource=bathtub&action=list');
 
             }else
                 echo 'Invalid 2FA code, please try again.';
