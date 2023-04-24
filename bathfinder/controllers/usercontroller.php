@@ -8,10 +8,10 @@ class UserController{
     private $user;
 
     function __construct(){
-        echo "Here now";
+        
         if(isset($_GET)){
             if(isset($_GET['action'])){
-                echo "Im here";
+               
                 $action = $_GET['action'];
 
                 $viewClass = "\\views\\"."User".ucfirst($action);
@@ -30,7 +30,7 @@ class UserController{
                             $this->user = $this->user->getUserByUsername($_POST['username'])[0];
                          
                             $this->user->setPassword($_POST['password']);
-                            echo "tf";
+                           
                             echo $this->user->getPassword();
 
                             // Based on the action determine which Model function to call
@@ -49,7 +49,7 @@ class UserController{
 
                             $this->user->setUsername($_POST['username']);
                             
-                            echo "This is the password".$_POST['password'];
+                            
                             $this->user->setPassword($_POST['password']);
 
                             $this->user->setFName($_POST['fname']);
@@ -94,6 +94,13 @@ class UserController{
                             $twofacode = $_POST['twofacode'];
 
                             $this->user->$action($twofacode);
+                        }
+                    }else if ($action == 'logout'){
+                        if (isset($_COOKIE['bathfinderuser'])){
+                            $username = $_COOKIE['bathfinderuser'];
+                            $this->user = $this->user->getUserByUsername($username)[0];
+                            $this->user->$action();
+                            
                         }
                     }
                 }

@@ -1,6 +1,6 @@
 <?php
 namespace models;
-
+require_once(dirname(__DIR__)."/core/dbconnectionmanager.php");
 class Tolerance{
     private $tol_id;
     private $user_id;
@@ -20,6 +20,26 @@ class Tolerance{
     private $gmin;
     private $hplus;
     private $hmin;
+
+    function __construct(){
+        $conManager = new \database\DBConnectionManager();
+
+        $this->dbConnection = $conManager->getConnection();
+    }
+
+    function saveTolerance(){
+        $query = "INSERT INTO tolerances (user_id, aplus, amin, bplus, bmin, cplus, cmin, dplus, dmin
+            eplus, emin, fplus, fmin, gplus, gmin, hplus, hmin) 
+        VALUES(:user_id, :aplus, :amin, :bplus, :bmin, :cplus, :cmin, :dplus, :dmin, :eplus, :emin, :fplus, :fmin, 
+            :gplus, :gmin, :hplus, :hmin)";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        return $statement->execute(['user_id' => $this->user_id, 'aplus'=> $this->aplus, 'amin'=> $this->amin, 'bplus'=> $this->bplus,
+            'bmin' => $this->bmin, 'cplus' => $this->cplus, 'dplus' => $this->dplus, 'dmin' => $this->dmin, 
+            'eplus' => $this->eplus, 'emin' => $this->emin, 'fplus' => $this->fplus, 'fmin' => $this->fmin,
+            'gplus' => $this->gplus, 'gmin' => $this->gmin, 'hplus' => $this->hplus, 'hmin' => $this->hmin]);
+    }
 
 
     public function getUserId(){
