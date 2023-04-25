@@ -34,13 +34,38 @@
 
 class SalesList{
 
-  private $sales;
+  private $user;
 
   private $welcomeMessage;
 
-  public function __construct(){
+  public function __construct($user){
+
+      $this->user = $user;
+
+      $membershipProvider = $this->user->getMembershipProvider();
+
+      if($membershipProvider->isLoggedIn()){
+        $this->welcomeMessage = 'Welcome '.$this->user->getUsername();
+      }else{//user not logged in
+
+        header('HTTP/1.1 401 Unauthorized');
+        header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
+        
+      } 
   }
+
   function render(...$data){
+    
+    echo $this->welcomeMessage;
+
+    echo '<br/>';
+
+    echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
+
+    echo '<br/>';
+    echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=list">Bathtubs</a>';
+
+    echo '<br/>';
     $sales = $data[0];
 
     $html = '<table id="salesTable">';
@@ -56,7 +81,7 @@ class SalesList{
                 $html .=  "<tr>
                 <td>".$s['user_id']."</td>
                 <td>".$s['productType']."</td>
-                <td>".$s['productId']."</td>
+                <td>".$s['productID']."</td>
                 <td>".$s['customerName']."</td>
                 <td>".$s['saleAmount']."</td>
                 <td>".$s['isPaid']."</td>
@@ -64,9 +89,15 @@ class SalesList{
     }
     $html .= "</table>";
 
+    echo '<a href="http://localhost/bathfinder/index.php?resource=sales&action=create">Create Sales</a>';
+
+    echo '<br/>';
+
     echo $html;
   }
 
 }
 
 ?>
+</body>
+</html>

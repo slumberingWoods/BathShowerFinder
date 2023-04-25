@@ -3,7 +3,7 @@ namespace models;
 
 require_once(dirname(__DIR__)."/core/dbconnectionmanager.php");
 
-require(dirname(__DIR__)."/core/membershipprovider.php");
+require_once(dirname(__DIR__)."/core/membershipprovider.php");
 
 class User{
 
@@ -241,6 +241,12 @@ class User{
 
     public function setTempPass($pass){
         $this->tempPass = $pass;
+    }
+    public function getUserId(){
+
+
+        return $this->user_id;
+
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
 namespace membershipprovider;
 
-require(dirname(__DIR__)."/vendor/phpotp/code/rfc6238.php");
+require_once(dirname(__DIR__)."/vendor/phpotp/code/rfc6238.php");
 
 class MembershipProvider{
 
@@ -20,6 +20,8 @@ class MembershipProvider{
         session_start();
 
         $_SESSION['username'] = $this->user->getUsername();
+
+        $_SESSION['id'] = $this->user->getUserId();
 
         setcookie('bathfinderuser', $this->user->getUsername(), time()+3600);
         
