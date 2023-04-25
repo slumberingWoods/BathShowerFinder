@@ -2,9 +2,7 @@
     
     spl_autoload_register(
         function ($class){
-            if ($class == 'views\Tolerance'){
-                return;
-            }
+            
            require($class.".php");
 
         }
@@ -28,7 +26,7 @@ class App{
                 //We are adding a namespace to the class name to differentiate between controller and view classes
                 $controllerClass = "\\controllers\\".ucfirst($resource)."Controller";
 
-                
+                echo $controllerClass;
                 if(class_exists($controllerClass)){
                     $controller = new $controllerClass();
 

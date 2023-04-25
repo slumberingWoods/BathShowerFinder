@@ -54,7 +54,6 @@ class BathtubController{
                         $view->render($bathtubs);
 
                     }
-                    
                 }
             }
         }

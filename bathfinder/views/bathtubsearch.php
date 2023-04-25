@@ -1,191 +1,201 @@
-<?php namespace views;
-  require(dirname(__DIR__)."/models/tolerance.php");
+<?php
+namespace views;
+
+require(dirname(__DIR__) . "/models/tolerance.php");
 // This code is taken from Omnivox hrapp version 5_5, modified for our project
 ?>
 <html>
+
 <head>
-<style>
-#bathtubsTable {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+  <style>
+    #bathtubsTable {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
 
-#bathtubsTable td, #bathtubsTable th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
+    #bathtubsTable td,
+    #bathtubsTable th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
 
-#bathtubsTable tr:nth-child(even){background-color: #f2f2f2;}
+    #bathtubsTable tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-#bathtubsTable tr:hover {background-color: #ddd;}
+    #bathtubsTable tr:hover {
+      background-color: #ddd;
+    }
 
-#bathtubsTable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
+    #bathtubsTable th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+    }
 
-#infoTable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #599c8c;
-  color: white;
-}
-
-</style>
+    #infoTable th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #599c8c;
+      color: white;
+    }
+  </style>
 </head>
+
 <body>
-<?php
+  <?php
 
-class BathtubSearch{
+  class BathtubSearch
+  {
 
-  private $user;
-  private $tol;
+    private $user;
 
-  private $welcomeMessage;
+    private $welcomeMessage;
 
-  public function __construct($user){
+    public function __construct($user)
+    {
 
       $this->user = $user;
 
       $membershipProvider = $this->user->getMembershipProvider();
 
-      if($membershipProvider->isLoggedIn()){
-        $this->welcomeMessage = 'Welcome '.$this->user->getUsername();
-      }else{//user not logged in
-
+      if ($membershipProvider->isLoggedIn()) {
+        $this->welcomeMessage = 'Welcome ' . $this->user->getUsername();
+      } else { //user not logged in
+  
         header('HTTP/1.1 401 Unauthorized');
         header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
-        
-      } 
-  }
-  
-  function render(...$data){
 
-    $searchResults = $data[0];
+      }
+    }
 
-    echo $this->welcomeMessage;
-    echo '<br/>';
+    function render(...$data)
+    {
 
-    echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
+      $searchResults = $data[0];
 
-    echo '<br/>';
+      echo $this->welcomeMessage;
+      echo '<br/>';
 
-    $bathtubs = $data[0];
+      echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
 
-    $html = '<form action="" method="post">
+      echo '<br/>';
+
+      $bathtubs = $data[0];
+
+      $html = '<form action="" method="post">
                 <h2>Measurements</h2>
-                <input type="hidden" id="search" name="search" value="true">
                 <label for="DimA">A</label><br>
-                <input type="text" id="DimA" name="DimA" value="'.(isset($_POST['DimA']) ? $_POST['DimA'] : "").'"><br>
+                <input type="text" id="DimA" name="DimA" value="' . (isset($_POST['DimA']) ? $_POST['DimA'] : "") . '"><br>
                 <label for="DimAPlus">A Plus</label><br>
-                <input type="text" id="DimAPlus" name="DimAPlus" value="'.(isset($_POST['DimAPlus']) ? $_POST['DimAPlus'] : "0").'"><br>
+                <input type="text" id="DimAPlus" name="DimAPlus" value="' . (isset($_POST['DimAPlus']) ? $_POST['DimAPlus'] : "0") . '"><br>
                 <label for="DimAMinus">A Minus</label><br>
-                <input type="text" id="DimAMinus" name="DimAMinus" value="'.(isset($_POST['DimAMinus']) ? $_POST['DimAMinus'] : "0").'"><br><br>
+                <input type="text" id="DimAMinus" name="DimAMinus" value="' . (isset($_POST['DimAMinus']) ? $_POST['DimAMinus'] : "0") . '"><br><br>
 
                 <label for="DimB">B</label><br>
-                <input type="text" id="DimB" name="DimB" value="'.(isset($_POST['DimB']) ? $_POST['DimB'] : "").'"><br>
+                <input type="text" id="DimB" name="DimB" value="' . (isset($_POST['DimB']) ? $_POST['DimB'] : "") . '"><br>
                 <label for="DimBPlus">B Plus</label><br>
-                <input type="text" id="DimBPlus" name="DimBPlus" value="'.(isset($_POST['DimBPlus']) ? $_POST['DimBPlus'] : "0").'"><br>
+                <input type="text" id="DimBPlus" name="DimBPlus" value="' . (isset($_POST['DimBPlus']) ? $_POST['DimBPlus'] : "0") . '"><br>
                 <label for="DimBMinus">B Minus</label><br>
-                <input type="text" id="DimBMinus" name="DimBMinus" value="'.(isset($_POST['DimBMinus']) ? $_POST['DimBMinus'] : "0").'"><br><br>
+                <input type="text" id="DimBMinus" name="DimBMinus" value="' . (isset($_POST['DimBMinus']) ? $_POST['DimBMinus'] : "0") . '"><br><br>
 
                 <label for="DimC">C</label><br>
-                <input type="text" id="DimC" name="DimC" value="'.(isset($_POST['DimC']) ? $_POST['DimC'] : "").'"><br>
+                <input type="text" id="DimC" name="DimC" value="' . (isset($_POST['DimC']) ? $_POST['DimC'] : "") . '"><br>
                 <label for="DimCPlus">C Plus</label><br>
-                <input type="text" id="DimCPlus" name="DimCPlus" value="'.(isset($_POST['DimCPlus']) ? $_POST['DimCPlus'] : "0").'"><br>
+                <input type="text" id="DimCPlus" name="DimCPlus" value="' . (isset($_POST['DimCPlus']) ? $_POST['DimCPlus'] : "0") . '"><br>
                 <label for="DimCMinus">C Minus</label><br>
-                <input type="text" id="DimCMinus" name="DimCMinus" value="'.(isset($_POST['DimCMinus']) ? $_POST['DimCMinus'] : "0").'"><br><br>
+                <input type="text" id="DimCMinus" name="DimCMinus" value="' . (isset($_POST['DimCMinus']) ? $_POST['DimCMinus'] : "0") . '"><br><br>
 
                 <label for="DimD">D</label><br>
-                <input type="text" id="DimD" name="DimD" value="'.(isset($_POST['DimD']) ? $_POST['DimD'] : "").'"><br>
+                <input type="text" id="DimD" name="DimD" value="' . (isset($_POST['DimD']) ? $_POST['DimD'] : "") . '"><br>
                 <label for="DimDPlus">D Plus</label><br>
-                <input type="text" id="DimDPlus" name="DimDPlus" value="'.(isset($_POST['DimDPlus']) ? $_POST['DimDPlus'] : "0").'"><br>
+                <input type="text" id="DimDPlus" name="DimDPlus" value="' . (isset($_POST['DimDPlus']) ? $_POST['DimDPlus'] : "0") . '"><br>
                 <label for="DimDMinus">D Minus</label><br>
-                <input type="text" id="DimDMinus" name="DimDMinus" value="'.(isset($_POST['DimDMinus']) ? $_POST['DimDMinus'] : "0").'"><br><br>
+                <input type="text" id="DimDMinus" name="DimDMinus" value="' . (isset($_POST['DimDMinus']) ? $_POST['DimDMinus'] : "0") . '"><br><br>
 
                 <label for="DimE">E</label><br>
-                <input type="text" id="DimE" name="DimE" value="'.(isset($_POST['DimE']) ? $_POST['DimE'] : "").'"><br>
+                <input type="text" id="DimE" name="DimE" value="' . (isset($_POST['DimE']) ? $_POST['DimE'] : "") . '"><br>
                 <label for="DimEPlus">E Plus</label><br>
-                <input type="text" id="DimEPlus" name="DimEPlus" value="'.(isset($_POST['DimEPlus']) ? $_POST['DimEPlus'] : "0").'"><br>
+                <input type="text" id="DimEPlus" name="DimEPlus" value="' . (isset($_POST['DimEPlus']) ? $_POST['DimEPlus'] : "0") . '"><br>
                 <label for="DimEMinus">E Minus</label><br>
-                <input type="text" id="DimEMinus" name="DimEMinus" value="'.(isset($_POST['DimEMinus']) ? $_POST['DimEMinus'] : "0").'"><br><br>
+                <input type="text" id="DimEMinus" name="DimEMinus" value="' . (isset($_POST['DimEMinus']) ? $_POST['DimEMinus'] : "0") . '"><br><br>
 
                 <label for="DimF">F</label><br>
-                <input type="text" id="DimF" name="DimF" value="'.(isset($_POST['DimF']) ? $_POST['DimF'] : "").'"><br>
+                <input type="text" id="DimF" name="DimF" value="' . (isset($_POST['DimF']) ? $_POST['DimF'] : "") . '"><br>
                 <label for="DimFPlus">F Plus</label><br>
-                <input type="text" id="DimFPlus" name="DimFPlus" value="'.(isset($_POST['DimFPlus']) ? $_POST['DimFPlus'] : "0").'"><br>
+                <input type="text" id="DimFPlus" name="DimFPlus" value="' . (isset($_POST['DimFPlus']) ? $_POST['DimFPlus'] : "0") . '"><br>
                 <label for="DimFMinus">F Minus</label><br>
-                <input type="text" id="DimFMinus" name="DimFMinus" value="'.(isset($_POST['DimFMinus']) ? $_POST['DimFMinus'] : "0").'"><br><br>
+                <input type="text" id="DimFMinus" name="DimFMinus" value="' . (isset($_POST['DimFMinus']) ? $_POST['DimFMinus'] : "0") . '"><br><br>
 
                 <label for="DimG">G</label><br>
-                <input type="text" id="DimG" name="DimG" value="'.(isset($_POST['DimG']) ? $_POST['DimG'] : "").'"><br>
+                <input type="text" id="DimG" name="DimG" value="' . (isset($_POST['DimG']) ? $_POST['DimG'] : "") . '"><br>
                 <label for="DimGPlus">G Plus</label><br>
-                <input type="text" id="DimGPlus" name="DimGPlus" value="'.(isset($_POST['DimGPlus']) ? $_POST['DimGPlus'] : "0").'"><br>
+                <input type="text" id="DimGPlus" name="DimGPlus" value="' . (isset($_POST['DimGPlus']) ? $_POST['DimGPlus'] : "0") . '"><br>
                 <label for="DimGMinus">G Minus</label><br>
-                <input type="text" id="DimGMinus" name="DimGMinus" value="'.(isset($_POST['DimGMinus']) ? $_POST['DimGMinus'] : "0").'"><br><br>
+                <input type="text" id="DimGMinus" name="DimGMinus" value="' . (isset($_POST['DimGMinus']) ? $_POST['DimGMinus'] : "0") . '"><br><br>
 
                 <label for="DimH">H</label><br>
-                <input type="text" id="DimH" name="DimH" value="'.(isset($_POST['DimH']) ? $_POST['DimH'] : "").'"><br>
+                <input type="text" id="DimH" name="DimH" value="' . (isset($_POST['DimH']) ? $_POST['DimH'] : "") . '"><br>
                 <label for="DimHPlus">H Plus</label><br>
-                <input type="text" id="DimHPlus" name="DimHPlus" value="'.(isset($_POST['DimHPlus']) ? $_POST['DimHPlus'] : "0").'"><br>
+                <input type="text" id="DimHPlus" name="DimHPlus" value="' . (isset($_POST['DimHPlus']) ? $_POST['DimHPlus'] : "0") . '"><br>
                 <label for="DimHMinus">H Minus</label><br>
-                <input type="text" id="DimHMinus" name="DimHMinus" value="'.(isset($_POST['DimHMinus']) ? $_POST['DimHMinus'] : "0").'"><br><br>
+                <input type="text" id="DimHMinus" name="DimHMinus" value="' . (isset($_POST['DimHMinus']) ? $_POST['DimHMinus'] : "0") . '"><br><br>
 
                 <h2>Advanced Options</h2>
                 <label for="FrontModel">Front Model</label><br>
                 <select id="FrontModel" name="FrontModel">
                   <option value="">-</option>
-                  <option value="Square" '.((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Square') ? 'selected' : '').'>Square</option>
-                  <option value="Semi-Round" '.((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Semi-Round') ? 'selected' : '').'>Semi-Round</option>
-                  <option value="Round" '.((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Square') ? 'Round' : '').'>Round</option>
+                  <option value="Square" ' . ((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Square') ? 'selected' : '') . '>Square</option>
+                  <option value="Semi-Round" ' . ((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Semi-Round') ? 'selected' : '') . '>Semi-Round</option>
+                  <option value="Round" ' . ((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Square') ? 'Round' : '') . '>Round</option>
                 </select><br><br>
 
                 <label for="BackModel">Back Model</label><br>
                 <select id="BackModel" name="BackModel">
                   <option value="">-</option>  
-                  <option value="Square" '.((isset($_POST['BackModel']) && $_POST['BackModel'] == 'Square') ? 'selected' : '').'>Square</option>
-                  <option value="Semi-Round" '.((isset($_POST['BackModel']) && $_POST['BackModel'] == 'Semi-Round') ? 'selected' : '').'>Semi-Round</option>
-                  <option value="Round" '.((isset($_POST['BackModel']) && $_POST['BackModel'] == 'Round') ? 'selected' : '').'>Round</option>
+                  <option value="Square" ' . ((isset($_POST['BackModel']) && $_POST['BackModel'] == 'Square') ? 'selected' : '') . '>Square</option>
+                  <option value="Semi-Round" ' . ((isset($_POST['BackModel']) && $_POST['BackModel'] == 'Semi-Round') ? 'selected' : '') . '>Semi-Round</option>
+                  <option value="Round" ' . ((isset($_POST['BackModel']) && $_POST['BackModel'] == 'Round') ? 'selected' : '') . '>Round</option>
                 </select><br><br>
 
                 <label for="Side">Side</label><br>
                 <select id="Side" name="Side">
                   <option value="">-</option>
-                  <option value="Parallel" '.((isset($_POST['Side']) && $_POST['Side'] == 'Parallel') ? 'selected' : '').'>Parallel</option>
-                  <option value="Bowed" '.((isset($_POST['Side']) && $_POST['Side'] == 'Bowed') ? 'selected' : '').'>Bowed</option>
-                  <option value="Tapered" '.((isset($_POST['Side']) && $_POST['Side'] == 'Tapered') ? 'selected' : '').'>Tapered</option>
+                  <option value="Parallel" ' . ((isset($_POST['Side']) && $_POST['Side'] == 'Parallel') ? 'selected' : '') . '>Parallel</option>
+                  <option value="Bowed" ' . ((isset($_POST['Side']) && $_POST['Side'] == 'Bowed') ? 'selected' : '') . '>Bowed</option>
+                  <option value="Tapered" ' . ((isset($_POST['Side']) && $_POST['Side'] == 'Tapered') ? 'selected' : '') . '>Tapered</option>
                 </select><br><br>
 
                 <label for="Material">Material</label><br>
                 <select id="Material" name="Material">
                   <option value="">-</option>
-                  <option value="Cast" '.((isset($_POST['Material']) && $_POST['Material'] == 'Cast') ? 'selected' : '').'>Cast</option>
-                  <option value="Steel" '.((isset($_POST['Material']) && $_POST['Material'] == 'Steel') ? 'selected' : '').'>Steel</option>
-                  <option value="Fiberglass" '.((isset($_POST['Material']) && $_POST['Material'] == 'Fiberglass') ? 'selected' : '').'>Fiberglass</option>
-                  <option value="CulturedMarble" '.((isset($_POST['Material']) && $_POST['Material'] == 'CulturedMarble') ? 'selected' : '').'>Cultured Marble</option>
+                  <option value="Cast" ' . ((isset($_POST['Material']) && $_POST['Material'] == 'Cast') ? 'selected' : '') . '>Cast</option>
+                  <option value="Steel" ' . ((isset($_POST['Material']) && $_POST['Material'] == 'Steel') ? 'selected' : '') . '>Steel</option>
+                  <option value="Fiberglass" ' . ((isset($_POST['Material']) && $_POST['Material'] == 'Fiberglass') ? 'selected' : '') . '>Fiberglass</option>
+                  <option value="CulturedMarble" ' . ((isset($_POST['Material']) && $_POST['Material'] == 'CulturedMarble') ? 'selected' : '') . '>Cultured Marble</option>
                 </select><br><br>
 
                 <label for="Family">Family</label><br>
-                <input type="text" id="Family" name="Family" value="'.(isset($_POST['Family']) ? $_POST['Family'] : "").'"><br><br>
+                <input type="text" id="Family" name="Family" value="' . (isset($_POST['Family']) ? $_POST['Family'] : "") . '"><br><br>
 
                 <label for="NoMold">No Mold</label><br>
-                <input type="text" id="NoMold" name="NoMold" value="'.(isset($_POST['NoMold']) ? $_POST['NoMold'] : "").'"><br><br>
+                <input type="text" id="NoMold" name="NoMold" value="' . (isset($_POST['NoMold']) ? $_POST['NoMold'] : "") . '"><br><br>
 
-                <input type="submit" value="Search">
-                <input type="submit" class="button" value="Save Tolerance" name="saveTol">
-    </form>';
+                <input type="submit" name="submitButton" value="Search">
+                <input type="submit" name="submitButton" value="Save Tolerances">
+      </form>';
 
-    echo $html;
+      echo $html;
 
-    if(isset($_POST)) {
-      if(isset($_POST['search'])) {
-        $html = '<table id="bathtubsTable">';
-    $html .= "<th>MoldName</th>
+      if (isset($_POST)) {
+        if (isset($_POST['submitButton'])) {
+          if ($_POST['submitButton'] == 'Search') {
+            $html = '<table id="bathtubsTable">';
+            $html .= "<th>MoldName</th>
                 <th>NoMold</th>
                 <th>DimA</th>
                 <th>DimB</th>
@@ -197,24 +207,24 @@ class BathtubSearch{
                 <th>DimH</th>
                 <th>Price</th>";
 
-    $i = 0;
-    foreach($bathtubs as $b){
-        
-        $html .=  "<tr id='".$i."' onClick='selectRow(this)'>
-                    <td>".$b['MoldName']."</td>
-                    <td>".$b['NoMold']."</td>
-                    <td>".$b['DimA']."</td>
-                    <td>".$b['DimB']."</td>
-                    <td>".$b['DimC']."</td>
-                    <td>".$b['DimD']."</td>
-                    <td>".$b['DimE']."</td>
-                    <td>".$b['DimF']."</td>
-                    <td>".$b['DimG']."</td>
-                    <td>".$b['DimH']."</td>
-                    <td>".$b['Price']."</td>
+            $i = 0;
+            foreach ($bathtubs as $b) {
+
+              $html .= "<tr id='" . $i . "' onClick='selectRow(this)'>
+                    <td>" . $b['MoldName'] . "</td>
+                    <td>" . $b['NoMold'] . "</td>
+                    <td>" . $b['DimA'] . "</td>
+                    <td>" . $b['DimB'] . "</td>
+                    <td>" . $b['DimC'] . "</td>
+                    <td>" . $b['DimD'] . "</td>
+                    <td>" . $b['DimE'] . "</td>
+                    <td>" . $b['DimF'] . "</td>
+                    <td>" . $b['DimG'] . "</td>
+                    <td>" . $b['DimH'] . "</td>
+                    <td>" . $b['Price'] . "</td>
                     </tr>
 
-                    <tr id='expand".$i."' style='display: none'>
+                    <tr id='expand" . $i . "' style='display: none'>
                       <td colspan=11 style='padding: 0px 0px 0px 0px'>
                         <table id='infoTable'>
                           <th>Image</th>
@@ -229,29 +239,29 @@ class BathtubSearch{
 
                           <tr>
                             <td>
-                              <img src='data:image/jpeg;base64,".base64_encode($b['IdImage'])."' width='300px'/>
+                              <img src='data:image/jpeg;base64," . base64_encode($b['IdImage']) . "' width='300px'/>
                             </td>
-                            <td>".$b['FrontName']."</td>
-                            <td>".$b['BackName']."</td>
-                            <td>".$b['SideName']."</td>
-                            <td>".$b['MoldName']."</td>
-                            <td>".$b['NoMold']."</td>
-                            <td>".$b['MatTubName']."</td>
-                            <td>".$b['Comments']."</td>
+                            <td>" . $b['FrontName'] . "</td>
+                            <td>" . $b['BackName'] . "</td>
+                            <td>" . $b['SideName'] . "</td>
+                            <td>" . $b['MoldName'] . "</td>
+                            <td>" . $b['NoMold'] . "</td>
+                            <td>" . $b['MatTubName'] . "</td>
+                            <td>" . $b['Comments'] . "</td>
                             <td>
-                              <a href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&tubid=".$b['TubID']."'>Print</a>
+                              <a href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&tubid=" . $b['TubID'] . "'>Print</a>
                             </td>
                           </tr>
                     
                         </table>
                       </td>
                     </tr>";
-                    $i++;
-    }
+              $i++;
+            }
 
-    $html .= "</table>";
+            $html .= "</table>";
 
-    $html .= "<script>
+            $html .= "<script>
                 function selectRow(row) {
                   if(document.getElementById('expand' + row.id).style.display == 'none') {
                     document.getElementById('expand' + row.id).setAttribute('style', 'display: table-row');
@@ -263,23 +273,45 @@ class BathtubSearch{
                 }
               </script>";
 
-    echo $html;
-      }if (array_key_exists('saveTol', $_POST)){
-        $this->tol = new \models\Tolerance();
-        $this->tol->setAllTolerances($this->user->getUserId(), $_POST['DimAPlus'], $_POST['DimAMinus'],
-        $_POST['DimBPlus'], $_POST['DimBMinus'], $_POST['DimCPlus'], $_POST['DimCMinus'],
-        $_POST['DimDPlus'], $_POST['DimDMinus'], $_POST['DimEPlus'], $_POST['DimEMinus'],
-        $_POST['DimFPlus'], $_POST['DimFMinus'], $_POST['DimGPlus'], $_POST['DimGMinus'],
-        $_POST['DimHPlus'], $_POST['DimHMinus'],);
-        $this->tol->saveTolerance();
+            echo $html;
+          } else if ($_POST['submitButton'] == 'Save Tolerances') {
+
+            $tol = new \models\Tolerance();
+
+            $tol->setAllTolerances(
+              $this->user->getUserId(),
+              $_POST['DimAPlus'],
+              $_POST['DimAMinus'],
+              $_POST['DimBPlus'],
+              $_POST['DimBMinus'],
+              $_POST['DimCPlus'],
+              $_POST['DimCMinus'],
+              $_POST['DimDPlus'],
+              $_POST['DimDMinus'],
+              $_POST['DimEPlus'],
+              $_POST['DimEMinus'],
+              $_POST['DimFPlus'],
+              $_POST['DimFMinus'],
+              $_POST['DimGPlus'],
+              $_POST['DimGMinus'],
+              $_POST['DimHPlus'],
+              $_POST['DimHMinus']
+            );
+
+            $tol->saveTolerance();
+
+          }
+
+        }
+
       }
+
     }
 
-  }  
+  }
 
-}
-
-?>
+  ?>
 
 </body>
+
 </html>

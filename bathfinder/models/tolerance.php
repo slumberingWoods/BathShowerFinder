@@ -28,15 +28,11 @@ class Tolerance{
     }
 
     function saveTolerance(){
-        $query1 = "DELETE FROM tolerances where user_id = :user_id AND EXISTS
-            (SELECT 1 FROM tolerances WHERE user_id = :user_id)";
-        $statement0 = $this->dbConnection->prepare($query1);
-        $statement0->execute(['user_id' => $this->user_id, 'user_id' => $this->user_id]);
-
-        $query = "INSERT INTO tolerances (user_id, aplus, amin, bplus, bmin, cplus, cmin, dplus, dmin,
-            eplus, emin, fplus, fmin, gplus, gmin, hplus, hmin) 
-        VALUES(:user_id, :aplus, :amin, :bplus, :bmin, :cplus, :cmin, :dplus, :dmin, :eplus, :emin, :fplus, :fmin, 
-            :gplus, :gmin, :hplus, :hmin)";
+        
+        $query = "UPDATE tolerances SET aplus = :aplus, amin = :amin, bplus = :bplus, bmin = :bmin, 
+        cplus = :cplus, cmin = :cmin, dplus = :dplus, dmin = :dmin, eplus = :eplus, emin = :emin, 
+        fplus = :fplus, fmin = :fmin, gplus = :gplus, gmin = :gmin, hplus = :hplus, hmin = :hmin
+        WHERE user_id = :user_id";
 
         $statement = $this->dbConnection->prepare($query);
 

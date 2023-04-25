@@ -3,7 +3,7 @@ namespace models;
 
 require_once(dirname(__DIR__)."/core/dbconnectionmanager.php");
 
-require_once(dirname(__DIR__)."/core/membershipprovider.php");
+require(dirname(__DIR__)."/core/membershipprovider.php");
 
 class User{
 
@@ -161,20 +161,16 @@ class User{
 
     }
 
-    public function setUserId($usrId){
-        $this->user_id = $usrId;
-    }
-
-    public function getUserId(){
-        return $this->user_id;
-    }
-
     public function setUsername($username){
 
         $this->username = $username;
 
     }
    
+    public function getUserId() {
+        return $this->user_id;
+    }
+
     public function getUsername(){
 
         return $this->username;
