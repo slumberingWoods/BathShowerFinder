@@ -1,5 +1,5 @@
 <?php namespace views;
-
+  require(dirname(__DIR__)."/models/tolerance.php");
 // This code is taken from Omnivox hrapp version 5_5, modified for our project
 ?>
 <html>
@@ -70,7 +70,7 @@ class BathtubSearch{
     echo $this->welcomeMessage;
     echo '<br/>';
 
-    echo '<a href="http://localhost/hrapp/index.php?resource=user&action=logout">Logout</a>';
+    echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
 
     echo '<br/>';
 
@@ -262,6 +262,10 @@ class BathtubSearch{
               </script>";
 
     echo $html;
+      }else if (isset($_POST['saveTolerance'])){
+        Tolerance tol = new Tolerance();
+
+        
       }
 
     }

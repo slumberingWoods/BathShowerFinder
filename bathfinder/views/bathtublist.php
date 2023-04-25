@@ -59,7 +59,7 @@ class BathtubList{
     echo $this->welcomeMessage;
     echo '<br/>';
 
-    echo '<a href="http://localhost/hrapp/index.php?resource=user&action=logout">Logout</a>';
+    echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
 
     echo '<br/>';
 

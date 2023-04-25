@@ -97,6 +97,8 @@ class User{
     function logout(){
 
         $this->membershipProvider->logout();
+        
+        
 
     }
 
