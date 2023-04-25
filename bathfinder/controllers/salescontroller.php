@@ -75,6 +75,11 @@ class SalesController{
                             // the appropriate function in the model
                             $this->sales->$action();
                         }
+                    } else if($action == 'listbyuser'){
+                        if(isset($_POST['user_id'])){
+                            $user_id = $_POST['user_id'];
+                            $view->render($this->sales->$action($user_id));
+                        }
                     }
                 }
             }

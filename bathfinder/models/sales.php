@@ -108,7 +108,7 @@ class Sales{
 
     }
 
-    function getAllFromUsers($user_id) {
+    function listbyuser($user_id) {
         $query = "select * from sales where user_id = :user_id";
 
         $statement = $this->dbConnection->prepare($query);

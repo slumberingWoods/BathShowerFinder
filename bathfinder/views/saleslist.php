@@ -89,9 +89,13 @@ class SalesList{
     }
     $html .= "</table>";
 
-    echo '<a href="http://localhost/bathfinder/index.php?resource=sales&action=create">Create Sales</a>';
+    $html .='<a href="http://localhost/bathfinder/index.php?resource=sales&action=create">Create Sales</a>';
 
-    echo '<br/>';
+    $html .= '<br/>';
+
+    $html .='<a href="http://localhost/bathfinder/index.php?resource=sales&action=listbyuser">Find sales by user</a>';
+
+    $html .= '<br/>';
 
     echo $html;
   }
