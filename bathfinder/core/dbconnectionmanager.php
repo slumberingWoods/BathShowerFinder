@@ -40,7 +40,7 @@ class DBConnectionManager{
         // for security reasons
         $this->username = "root"; //NOTE: usually you do not use the root account you create another user
         $this->password = "";
-        $this->server = "localhost";
+        $this->server = "localhost:3307";
         $this->dbname = "bathfinder";
 
         // There two libraries to use for database connection: MySQLi and PDO
