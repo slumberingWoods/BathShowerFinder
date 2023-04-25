@@ -33,14 +33,17 @@ echo '<br/>';
 
 <h1>Select user by id</h1>
 <form action="" method="post">
-  <label for="user_id">User Id:</label><br>
-  <input type="text" id="user_id" name="user_id"><br>
-  <input type="submit" value="Find">
+    <label for="productType">Product Type:</label><br>
+    <select id="productType" name="productType">
+        <option value="bathtub">Bathtub</option>
+        <option value="Shower">Shower</option>
+    </select>
+    <input type="submit" value="Find">
 </form>
 
 <?php
 
-class SalesListbyuser{
+class SalesListbyproduct{
 
     private $user;
 

@@ -21,8 +21,6 @@ class MembershipProvider{
 
         $_SESSION['username'] = $this->user->getUsername();
 
-        $_SESSION['id'] = $this->user->getUserId();
-
         setcookie('bathfinderuser', $this->user->getUsername(), time()+3600);
         
     }

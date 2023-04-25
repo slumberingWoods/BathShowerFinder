@@ -97,6 +97,14 @@ class SalesList{
 
     $html .= '<br/>';
 
+    $html .='<a href="http://localhost/bathfinder/index.php?resource=sales&action=listbyproduct">Find sales by product type</a>';
+
+    $html .= '<br/>';
+
+    $html .='<a href="http://localhost/bathfinder/index.php?resource=sales&action=listbyproductid">Find sales by product id</a>';
+
+    $html .= '<br/>';
+
     echo $html;
   }
 

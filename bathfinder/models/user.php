@@ -167,6 +167,10 @@ class User{
 
     }
    
+    public function getUserId() {
+        return $this->user_id;
+    }
+
     public function getUsername(){
 
         return $this->username;
@@ -241,12 +245,6 @@ class User{
 
     public function setTempPass($pass){
         $this->tempPass = $pass;
-    }
-    public function getUserId(){
-
-
-        return $this->user_id;
-
     }
 
 }

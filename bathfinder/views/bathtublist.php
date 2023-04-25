@@ -52,6 +52,7 @@ class BathtubList{
         header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
         
       } 
+      
   }
   
   function render(...$data){
@@ -60,7 +61,9 @@ class BathtubList{
     echo '<br/>';
 
     echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
+
     echo '<br/>';
+
     if($this->user->getIsAdmin()) {
       echo '<a href="http://localhost/bathfinder/index.php?resource=sales&action=list">Sales</a>';
 

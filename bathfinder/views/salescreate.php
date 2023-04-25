@@ -10,7 +10,11 @@ echo '<br/>';
 <h1>Create Sales</h1>
 <form action="" method="post">
   <label for="productType">Product Type:</label><br>
-  <input type="text" id="productType" name="productType"><br>
+  <select id="productType" name="productType">
+    <option value="bathtub">Bathtub</option>
+    <option value="Shower">Shower</option>
+  </select>
+</br>
   <label for="productID">Product ID:</label><br>
   <input type="text" id="productID" name="productID"><br>
   <label for="customerName">Customer Name:</label><br>
@@ -35,7 +39,6 @@ class SalesCreate{
         $membershipProvider = $this->user->getMembershipProvider();
 
         if($membershipProvider->isLoggedIn()){
-            $this->welcomeMessage = 'Welcome '.$this->user->getUsername();
         }else{//user not logged in
 
             header('HTTP/1.1 401 Unauthorized');

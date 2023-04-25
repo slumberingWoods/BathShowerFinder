@@ -118,8 +118,8 @@ class Sales{
         return $statement->fetchAll();
     }
 
-    function getAllFromProductType($productType) {
-        $query = "select * from sales where $productType = :productType";
+    function listbyproduct($productType) {
+        $query = "select * from sales where productType = :productType";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -127,8 +127,8 @@ class Sales{
 
         return $statement->fetchAll();
     }
-    function getAllFromProductId($productType, $productId) {
-        $query = "select * from sales where $productType = :productType and $productId = :productId";
+    function listbyproductid($productType, $productId) {
+        $query = "select * from sales where productType = :productType and productId = :productId";
 
         $statement = $this->dbConnection->prepare($query);
 

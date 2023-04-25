@@ -77,8 +77,16 @@ class SalesController{
                         }
                     } else if($action == 'listbyuser'){
                         if(isset($_POST['user_id'])){
-                            $user_id = $_POST['user_id'];
-                            $view->render($this->sales->$action($user_id));
+                            $view->render($this->sales->$action($_POST['user_id']));
+                        }
+                    } else if($action == 'listbyproduct'){
+                        if(isset($_POST['productType'])){
+                            $view->render($this->sales->$action($_POST['productType']));
+                        }
+                    }
+                    else if($action == 'listbyproductid'){
+                        if(isset($_POST['productType']) && isset($_POST['productId'])){
+                            $view->render($this->sales->$action($_POST['productType'], $_POST['productId']));
                         }
                     }
                 }

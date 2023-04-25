@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 25, 2023 at 05:27 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Host: localhost:3307
+-- Generation Time: Apr 25, 2023 at 10:43 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,7 +53,7 @@ CREATE TABLE `bathtub` (
   `MatTubName` varchar(30) NOT NULL,
   `RegionAvailable` varchar(20) NOT NULL,
   `Price` decimal(20,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `bathtub`
@@ -80,15 +80,18 @@ CREATE TABLE `sales` (
   `customerName` varchar(50) NOT NULL,
   `saleAmount` decimal(20,2) NOT NULL,
   `isPaid` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sales`
 --
 
 INSERT INTO `sales` (`salesId`, `user_id`, `productType`, `productID`, `customerName`, `saleAmount`, `isPaid`) VALUES
-(1, 20, 'bathtub', 2, 'Mark', '1000.00', 1),
-(2, 20, 'bathtub', 6, 'Jackson', '800.00', 0);
+(1, 20, 'bathtub', 5, 'Jake', '199.00', 0),
+(2, 20, 'bathtub', 4, 'John', '100.00', 0),
+(3, 20, 'bathtub', 2, 'Kyle ', '199.99', 0),
+(4, 20, 'bathtub', 2, 'Jimmy', '199.99', 0),
+(5, 20, 'bathtub', 4, 'Harry', '100.00', 1);
 
 -- --------------------------------------------------------
 
@@ -118,7 +121,7 @@ CREATE TABLE `shower` (
   `MatShowerName` varchar(30) NOT NULL,
   `RegionAvailable` varchar(20) NOT NULL,
   `Price` decimal(20,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -145,7 +148,7 @@ CREATE TABLE `tolerances` (
   `gmin` decimal(10,0) NOT NULL,
   `hplus` decimal(10,0) NOT NULL,
   `hmin` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -162,7 +165,7 @@ CREATE TABLE `user` (
   `email` varchar(30) NOT NULL,
   `isAdmin` tinyint(4) NOT NULL,
   `otpsecretkey` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
@@ -170,7 +173,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `firstName`, `lastName`, `password`, `email`, `isAdmin`, `otpsecretkey`) VALUES
 (19, 'test', 'John', 'Doe', '$2y$10$Y1t69F91ytnZw1ab0Hsx2.kmzeFDmSWeqU3eM9B5QBezSWQETXbre', 'johndoe@gmail.com', 0, 'LWTIWBRAOYPKPOJW'),
-(20, 'admin', 'admin', 'admin', '$2y$10$nURxgWopK7Aza.wh7KeoVur4Nm2KsBTOmhVydfiLTl6.1HiEPdxgy', 'admin@admin.com', 1, 'ZVHOTOTULOTUCFLC');
+(20, 'admin', 'admin', 'admin', '$2y$10$oyaZF4TLbzJW.dz4q5Ztn.45Jz1SZiZmbggTJqq4I3ygmSZAudHGy', 'admin@admin.com', 1, 'BXMY6JUTJLITQGJW');
 
 --
 -- Indexes for dumped tables
@@ -186,8 +189,7 @@ ALTER TABLE `bathtub`
 -- Indexes for table `sales`
 --
 ALTER TABLE `sales`
-  ADD PRIMARY KEY (`salesId`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`salesId`);
 
 --
 -- Indexes for table `shower`
@@ -216,7 +218,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `salesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `salesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `shower`
@@ -233,12 +235,6 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `sales`
---
-ALTER TABLE `sales`
-  ADD CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `tolerances`
