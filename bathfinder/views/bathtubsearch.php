@@ -44,6 +44,7 @@
 class BathtubSearch{
 
   private $user;
+  private $tol;
 
   private $welcomeMessage;
 
@@ -176,6 +177,7 @@ class BathtubSearch{
                 <input type="text" id="NoMold" name="NoMold" value="'.(isset($_POST['NoMold']) ? $_POST['NoMold'] : "").'"><br><br>
 
                 <input type="submit" value="Search">
+                <input type="submit" class="button" value="Save Tolerance" name="saveTol">
     </form>';
 
     echo $html;
@@ -262,12 +264,15 @@ class BathtubSearch{
               </script>";
 
     echo $html;
-      }else if (isset($_POST['saveTolerance'])){
-        Tolerance tol = new Tolerance();
-
-        
+      }if (array_key_exists('saveTol', $_POST)){
+        $this->tol = new \models\Tolerance();
+        $this->tol->setAllTolerances($this->user->getUserId(), $_POST['DimAPlus'], $_POST['DimAMinus'],
+        $_POST['DimBPlus'], $_POST['DimBMinus'], $_POST['DimCPlus'], $_POST['DimCMinus'],
+        $_POST['DimDPlus'], $_POST['DimDMinus'], $_POST['DimEPlus'], $_POST['DimEMinus'],
+        $_POST['DimFPlus'], $_POST['DimFMinus'], $_POST['DimGPlus'], $_POST['DimGMinus'],
+        $_POST['DimHPlus'], $_POST['DimHMinus'],);
+        $this->tol->saveTolerance();
       }
-
     }
 
   }  

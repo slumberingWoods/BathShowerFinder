@@ -3,7 +3,7 @@ namespace models;
 
 require_once(dirname(__DIR__)."/core/dbconnectionmanager.php");
 
-require(dirname(__DIR__)."/core/membershipprovider.php");
+require_once(dirname(__DIR__)."/core/membershipprovider.php");
 
 class User{
 
@@ -159,6 +159,14 @@ class User{
 
         $this->otpcodeisvalid = $this->membershipProvider->verifyCode($this->otpsecretkey, $twofacode);
 
+    }
+
+    public function setUserId($usrId){
+        $this->user_id = $usrId;
+    }
+
+    public function getUserId(){
+        return $this->user_id;
     }
 
     public function setUsername($username){
