@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Apr 23, 2023 at 05:32 AM
+-- Generation Time: Apr 25, 2023 at 10:43 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -81,6 +81,17 @@ CREATE TABLE `sales` (
   `saleAmount` decimal(20,2) NOT NULL,
   `isPaid` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`salesId`, `user_id`, `productType`, `productID`, `customerName`, `saleAmount`, `isPaid`) VALUES
+(1, 20, 'bathtub', 5, 'Jake', '199.00', 0),
+(2, 20, 'bathtub', 4, 'John', '100.00', 0),
+(3, 20, 'bathtub', 2, 'Kyle ', '199.99', 0),
+(4, 20, 'bathtub', 2, 'Jimmy', '199.99', 0),
+(5, 20, 'bathtub', 4, 'Harry', '100.00', 1);
 
 -- --------------------------------------------------------
 
@@ -161,7 +172,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `firstName`, `lastName`, `password`, `email`, `isAdmin`, `otpsecretkey`) VALUES
-(19, 'test', 'John', 'Doe', '$2y$10$Y1t69F91ytnZw1ab0Hsx2.kmzeFDmSWeqU3eM9B5QBezSWQETXbre', 'johndoe@gmail.com', 0, 'LWTIWBRAOYPKPOJW');
+(19, 'test', 'John', 'Doe', '$2y$10$Y1t69F91ytnZw1ab0Hsx2.kmzeFDmSWeqU3eM9B5QBezSWQETXbre', 'johndoe@gmail.com', 0, 'LWTIWBRAOYPKPOJW'),
+(20, 'admin', 'admin', 'admin', '$2y$10$oyaZF4TLbzJW.dz4q5Ztn.45Jz1SZiZmbggTJqq4I3ygmSZAudHGy', 'admin@admin.com', 1, 'BXMY6JUTJLITQGJW');
 
 --
 -- Indexes for dumped tables
@@ -206,7 +218,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `salesId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `salesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `shower`
@@ -218,7 +230,7 @@ ALTER TABLE `shower`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

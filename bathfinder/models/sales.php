@@ -14,7 +14,7 @@ class Sales{
     private $productId;
     private $customerName;
     private $saleAmount; 	
-    private $isPaid;
+    private $isPaid = false;
 
     private $dbConnection;
 
@@ -30,12 +30,12 @@ class Sales{
 
     function create(){
 
-        $query = "INSERT INTO sales (salesId, user_id, productType, productID, customerName, saleAmount, isPaid) 
-        VALUES(:salesId, :user_id, :productType, :productID, :customerName, :saleAmount, :isPaid)";
+        $query = "INSERT INTO sales (user_id, productType, productID, customerName, saleAmount, isPaid) 
+        VALUES(:user_id, :productType, :productID, :customerName, :saleAmount, :isPaid)";
 
         $statement = $this->dbConnection->prepare($query);
 
-        return $statement->execute(['salesId' => $this->salesId, 'user_id' => $this->user_id, 'productType' => $this->productType, 'productId' => $this->productId, 'customerName' => $this->customerName, 'saleAmount' => $this->saleAmount, 'isPaid' => $this->isPaid]);
+        return $statement->execute(['user_id' => $this->user_id, 'productType' => $this->productType, 'productID' => $this->productId, 'customerName' => $this->customerName, 'saleAmount' => $this->saleAmount, 'isPaid' => $this->isPaid]);
     }
 
     public function getSalesId(){
@@ -93,7 +93,7 @@ class Sales{
     public function setSaleAmount($saleAmount) {
         $this->saleAmount = $saleAmount;
     }
-    public function setIsLate($isPaid) {
+    public function setIsPaid($isPaid) {
         $this->isPaid = $isPaid;
     }
     function getAll(){
@@ -108,7 +108,7 @@ class Sales{
 
     }
 
-    function getAllFromUsers($user_id) {
+    function listbyuser($user_id) {
         $query = "select * from sales where user_id = :user_id";
 
         $statement = $this->dbConnection->prepare($query);
@@ -118,8 +118,8 @@ class Sales{
         return $statement->fetchAll();
     }
 
-    function getAllFromProductType($productType) {
-        $query = "select * from sales where $productType = :productType";
+    function listbyproduct($productType) {
+        $query = "select * from sales where productType = :productType";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -127,8 +127,8 @@ class Sales{
 
         return $statement->fetchAll();
     }
-    function getAllFromProductId($productType, $productId) {
-        $query = "select * from sales where $productType = :productType and $productId = :productId";
+    function listbyproductid($productType, $productId) {
+        $query = "select * from sales where productType = :productType and productId = :productId";
 
         $statement = $this->dbConnection->prepare($query);
 

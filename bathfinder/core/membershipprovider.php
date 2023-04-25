@@ -1,7 +1,7 @@
 <?php
 namespace membershipprovider;
 
-require(dirname(__DIR__)."/vendor/phpotp/code/rfc6238.php");
+require_once(dirname(__DIR__)."/vendor/phpotp/code/rfc6238.php");
 
 class MembershipProvider{
 
