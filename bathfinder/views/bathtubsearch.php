@@ -56,10 +56,14 @@ require(dirname(__DIR__) . "/models/tolerance.php");
 
     private $welcomeMessage;
 
+    private $tol; 
+
     public function __construct($user)
     {
 
       $this->user = $user;
+
+      $this->tol = new \models\Tolerance();
 
       $membershipProvider = $this->user->getMembershipProvider();
 
@@ -76,6 +80,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
     function render(...$data)
     {
 
+
       $searchResults = $data[0];
 
       echo $this->welcomeMessage;
@@ -84,6 +89,29 @@ require(dirname(__DIR__) . "/models/tolerance.php");
       echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
 
       echo '<br/>';
+
+      if ($_POST['submitButton'] == 'Load Tolerances'){
+        $this->tol->loadTolerances($this->user->getUserId());
+       
+        $_POST['DimAPlus'] = $this->tol->getAplus();
+        $_POST['DimAMinus'] = $this->tol->getAmin();
+        $_POST['DimBPlus'] = $this->tol->getBplus();
+        $_POST['DimBMinus'] = $this->tol->getBmin();
+        $_POST['DimCPlus'] = $this->tol->getCplus();
+        $_POST['DimCMinus'] = $this->tol->getCmin();
+        $_POST['DimDPlus'] = $this->tol->getDplus();
+        $_POST['DimDMinus'] = $this->tol->getDmin();
+        $_POST['DimEPlus'] = $this->tol->getEplus();
+        $_POST['DimEMinus'] = $this->tol->getEmin();
+        $_POST['DimFPlus'] = $this->tol->getFplus();
+        $_POST['DimFMinus'] = $this->tol->getFmin();
+        $_POST['DimGPlus'] = $this->tol->getGplus();
+        $_POST['DimGMinus'] = $this->tol->getGmin();
+        $_POST['DimHPlus'] = $this->tol->getHplus();
+        $_POST['DimHMinus'] = $this->tol->getHmin();
+
+      
+      }
 
       $bathtubs = $data[0];
 
@@ -187,6 +215,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
 
                 <input type="submit" name="submitButton" value="Search">
                 <input type="submit" name="submitButton" value="Save Tolerances">
+                <input type="submit" name="submitButton" value="Load Tolerances">
       </form>';
 
       echo $html;
@@ -275,10 +304,10 @@ require(dirname(__DIR__) . "/models/tolerance.php");
 
             echo $html;
           } else if ($_POST['submitButton'] == 'Save Tolerances') {
+            
+           // $tol = new \models\Tolerance();
 
-            $tol = new \models\Tolerance();
-
-            $tol->setAllTolerances(
+            $this->tol->setAllTolerances(
               $this->user->getUserId(),
               $_POST['DimAPlus'],
               $_POST['DimAMinus'],
@@ -298,10 +327,32 @@ require(dirname(__DIR__) . "/models/tolerance.php");
               $_POST['DimHMinus']
             );
 
-            $tol->saveTolerance();
+            $this->tol->saveTolerance();
 
           }
+          // else if ($_POST['submitButton'] == 'Load Tolerances'){
+          //   $this->tol->loadTolerances($this->user->getUserId());
+           
+          //   $_POST['DimAPlus'] = $this->tol->getAplus();
+          //   $_POST['DimAMinus'] = $this->tol->getAmin();
+          //   $_POST['DimBPlus'] = $this->tol->getBplus();
+          //   $_POST['DimBMinus'] = $this->tol->getBmin();
+          //   $_POST['DimCPlus'] = $this->tol->getCplus();
+          //   $_POST['DimCMinus'] = $this->tol->getCmin();
+          //   $_POST['DimDPlus'] = $this->tol->getDplus();
+          //   $_POST['DimDMinus'] = $this->tol->getDmin();
+          //   $_POST['DimEPlus'] = $this->tol->getEplus();
+          //   $_POST['DimEMinus'] = $this->tol->getEmin();
+          //   $_POST['DimFPlus'] = $this->tol->getFplus();
+          //   $_POST['DimFMinus'] = $this->tol->getFmin();
+          //   $_POST['DimGPlus'] = $this->tol->getGplus();
+          //   $_POST['DimGMinus'] = $this->tol->getGmin();
+          //   $_POST['DimHPlus'] = $this->tol->getHplus();
+          //   $_POST['DimHMinus'] = $this->tol->getHmin();
 
+            
+          // }
+            
         }
 
       }

@@ -67,8 +67,33 @@ class User{
         
         $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
         $this->setIsCreated(true);
-        return $statement->execute(['username' => $this->username, 'password'=> $hashedPassword, 'firstName'=> $this->fname, 'lastName'=> $this->lname,
+        $statement->execute(['username' => $this->username, 'password'=> $hashedPassword, 'firstName'=> $this->fname, 'lastName'=> $this->lname,
             'email' => $this->email, 'isAdmin' => $this->isAdmin]);
+
+        $query1 = "SELECT user_id FROM user WHERE username = :username";
+
+        $statement1 = $this->dbConnection->prepare($query1);
+        
+        $statement1->execute(['username'=> $this->username]);
+
+        $usrId = $statement1->fetchColumn(0);
+        
+
+        $query2 = "INSERT INTO tolerances (user_id, aplus, amin, bplus, bmin, cplus, cmin, dplus, dmin,
+            eplus, emin, fplus, fmin, gplus, gmin, hplus, hmin) 
+             VALUES(:user_id, :aplus, :amin, :bplus, :bmin, :cplus, :cmin, :dplus, :dmin, :eplus, :emin, :fplus, :fmin, 
+            :gplus, :gmin, :hplus, :hmin)";
+        $statement2 = $this->dbConnection->prepare($query2);
+
+
+
+        return $statement2->execute(['user_id' => $usrId, 'aplus'=> 0, 'amin'=> 0, 'bplus'=> 0,
+            'bmin' => 0, 'cplus' => 0, 'dplus' => 0, 'dmin' => 0, 
+            'bmin' => 0, 'cplus' => 0, 'cmin' => 0, 'dplus' => 0, 'dmin' => 0, 
+            'eplus' => 0, 'emin' => 0, 'fplus' => 0, 'fmin' => 0,
+            'gplus' => 0, 'gmin' => 0, 'hplus' => 0, 'hmin' => 0]);
+
+
 
     }
 

@@ -28,18 +28,40 @@ class Tolerance{
     }
 
     function saveTolerance(){
+            $query = "UPDATE tolerances SET aplus = :aplus, amin = :amin, bplus = :bplus, bmin = :bmin, 
+                cplus = :cplus, cmin = :cmin, dplus = :dplus, dmin = :dmin, eplus = :eplus, emin = :emin, 
+                fplus = :fplus, fmin = :fmin, gplus = :gplus, gmin = :gmin, hplus = :hplus, hmin = :hmin
+                WHERE user_id = :user_id";
+
+            $statement = $this->dbConnection->prepare($query);
+
+            return $statement->execute(['user_id' => $this->user_id, 'aplus'=> $this->aplus, 'amin'=> $this->amin, 'bplus'=> $this->bplus,
+                'bmin' => $this->bmin, 'cplus' => $this->cplus, 'cmin' => $this->cmin, 'dplus' => $this->dplus, 'dmin' => $this->dmin, 
+                'eplus' => $this->eplus, 'emin' => $this->emin, 'fplus' => $this->fplus, 'fmin' => $this->fmin,
+                'gplus' => $this->gplus, 'gmin' => $this->gmin, 'hplus' => $this->hplus, 'hmin' => $this->hmin]);
         
-        $query = "UPDATE tolerances SET aplus = :aplus, amin = :amin, bplus = :bplus, bmin = :bmin, 
-        cplus = :cplus, cmin = :cmin, dplus = :dplus, dmin = :dmin, eplus = :eplus, emin = :emin, 
-        fplus = :fplus, fmin = :fmin, gplus = :gplus, gmin = :gmin, hplus = :hplus, hmin = :hmin
-        WHERE user_id = :user_id";
+        
+    }
+
+    public function loadTolerances($usrId){
+        $query = "SELECT * FROM tolerances WHERE user_id = :user_id";
 
         $statement = $this->dbConnection->prepare($query);
 
-        return $statement->execute(['user_id' => $this->user_id, 'aplus'=> $this->aplus, 'amin'=> $this->amin, 'bplus'=> $this->bplus,
-            'bmin' => $this->bmin, 'cplus' => $this->cplus, 'cmin' => $this->cmin, 'dplus' => $this->dplus, 'dmin' => $this->dmin, 
-            'eplus' => $this->eplus, 'emin' => $this->emin, 'fplus' => $this->fplus, 'fmin' => $this->fmin,
-            'gplus' => $this->gplus, 'gmin' => $this->gmin, 'hplus' => $this->hplus, 'hmin' => $this->hmin]);
+        $statement->execute(['user_id'=> $usrId]);
+
+        $result = $statement->fetchAll();
+
+        $this->tol_id = $result[0]['tol_id'];
+
+        //echo $this->tol_id;
+        // print_r($result);
+        // echo $result[0]['tol_id'];
+        $this->setAllTolerances($result[0]['user_id'], $result[0]['aplus'], $result[0]['amin'],
+        $result[0]['bplus'], $result[0]['bmin'], $result[0]['cplus'], $result[0]['cmin'],
+        $result[0]['dplus'], $result[0]['dmin'], $result[0]['eplus'], $result[0]['emin'],
+        $result[0]['fplus'], $result[0]['fmin'], $result[0]['gplus'], $result[0]['gmin'],
+        $result[0]['hplus'], $result[0]['hmin']);
     }
 
     public function setAllTolerances($usrId, $aplus, $amin, $bplus, $bmin, $cplus, $cmin,
@@ -59,8 +81,8 @@ class Tolerance{
             $this->setFmin($fmin);
             $this->setGplus($gplus);
             $this->setGmin($gmin);
-            $this->setHplus($fplus);
-            $this->setHmin($fmin);
+            $this->setHplus($hplus);
+            $this->setHmin($hmin);
         }
 
 

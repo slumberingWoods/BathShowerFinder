@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3307
--- Generation Time: Apr 25, 2023 at 10:43 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Host: 127.0.0.1
+-- Generation Time: Apr 28, 2023 at 09:04 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,7 +53,7 @@ CREATE TABLE `bathtub` (
   `MatTubName` varchar(30) NOT NULL,
   `RegionAvailable` varchar(20) NOT NULL,
   `Price` decimal(20,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bathtub`
@@ -80,7 +80,7 @@ CREATE TABLE `sales` (
   `customerName` varchar(50) NOT NULL,
   `saleAmount` decimal(20,2) NOT NULL,
   `isPaid` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sales`
@@ -121,7 +121,7 @@ CREATE TABLE `shower` (
   `MatShowerName` varchar(30) NOT NULL,
   `RegionAvailable` varchar(20) NOT NULL,
   `Price` decimal(20,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -148,7 +148,14 @@ CREATE TABLE `tolerances` (
   `gmin` decimal(10,0) NOT NULL,
   `hplus` decimal(10,0) NOT NULL,
   `hmin` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tolerances`
+--
+
+INSERT INTO `tolerances` (`tol_id`, `user_id`, `aplus`, `amin`, `bplus`, `bmin`, `cplus`, `cmin`, `dplus`, `dmin`, `eplus`, `emin`, `fplus`, `fmin`, `gplus`, `gmin`, `hplus`, `hmin`) VALUES
+(10, 24, '2', '1', '9', '1', '1', '3', '3', '2', '3', '2', '2', '3', '2', '1', '33', '12');
 
 -- --------------------------------------------------------
 
@@ -165,7 +172,7 @@ CREATE TABLE `user` (
   `email` varchar(30) NOT NULL,
   `isAdmin` tinyint(4) NOT NULL,
   `otpsecretkey` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
@@ -173,7 +180,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `firstName`, `lastName`, `password`, `email`, `isAdmin`, `otpsecretkey`) VALUES
 (19, 'test', 'John', 'Doe', '$2y$10$Y1t69F91ytnZw1ab0Hsx2.kmzeFDmSWeqU3eM9B5QBezSWQETXbre', 'johndoe@gmail.com', 0, 'LWTIWBRAOYPKPOJW'),
-(20, 'admin', 'admin', 'admin', '$2y$10$oyaZF4TLbzJW.dz4q5Ztn.45Jz1SZiZmbggTJqq4I3ygmSZAudHGy', 'admin@admin.com', 1, 'BXMY6JUTJLITQGJW');
+(20, 'admin', 'admin', 'admin', '$2y$10$oyaZF4TLbzJW.dz4q5Ztn.45Jz1SZiZmbggTJqq4I3ygmSZAudHGy', 'admin@admin.com', 1, 'BXMY6JUTJLITQGJW'),
+(24, 'rob', 'roberto', 'cannucci', '$2y$10$3g70xsUH5dT5PmN/N5ib5.i8UU/vQzev0SQ9p/178p7zsexZfoha.', 'rob@gmail.com', 1, 'CY7IJCEKPGOWLTYK');
 
 --
 -- Indexes for dumped tables
@@ -227,10 +235,16 @@ ALTER TABLE `shower`
   MODIFY `ShowerID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tolerances`
+--
+ALTER TABLE `tolerances`
+  MODIFY `tol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
