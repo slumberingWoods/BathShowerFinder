@@ -20,7 +20,7 @@
 </form>
 
 <h2> Already registered?</h2>
-<a href="http://localhost/bathfinder/index.php?resource=user&action=login">Login</a>
+<a href="http://localhost/bathfinder/user/login">Login</a>
 
 <?php
 
@@ -38,7 +38,7 @@ class UserCreate{
 
     $this->user->getMembershipProvider()->login();
 
-    header("location: http://localhost/bathfinder/index.php?resource=user&action=setuptwofa");
+    header("location: http://localhost/bathfinder/user/setuptwofa");
 
     }
     

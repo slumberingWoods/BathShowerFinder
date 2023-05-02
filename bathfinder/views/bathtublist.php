@@ -49,7 +49,7 @@ class BathtubList{
       }else{//user not logged in
 
         header('HTTP/1.1 401 Unauthorized');
-        header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
+        header('Location: http://localhost/bathfinder/user/login');
         
       } 
       
@@ -60,12 +60,16 @@ class BathtubList{
     echo $this->welcomeMessage;
     echo '<br/>';
 
-    echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
+    echo '<a href="http://localhost/bathfinder/user/logout">Logout</a>';
 
     echo '<br/>';
 
+    echo '<a href="http://localhost/bathfinder/bathtub/search">Search</a>';
+
+    echo '<br/>';
+    
     if($this->user->getIsAdmin()) {
-      echo '<a href="http://localhost/bathfinder/index.php?resource=sales&action=list">Sales</a>';
+      echo '<a href="http://localhost/bathfinder/user/list">Sales</a>';
 
       echo '<br/>';
     }

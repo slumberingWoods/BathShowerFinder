@@ -12,7 +12,7 @@
 </form>
 
 <h2> Not registered?</h2>
-<a href="http://localhost/bathfinder/index.php?resource=user&action=create">Register</a>
+<a href="http://localhost/bathfinder/user/create">Register</a>
 
 <?php
 
@@ -32,7 +32,7 @@ class UserLogin{
       // We could do an authorization check to validate that the user has access privileges to the resource or data
 
       
-        header('Location: http://localhost/bathfinder/index.php?resource=user&action=validatecode');
+        header('Location: http://localhost/bathfinder/user/validatecode');
       
 
     }else{
