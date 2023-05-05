@@ -72,7 +72,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
       } else { //user not logged in
   
         header('HTTP/1.1 401 Unauthorized');
-        header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
+        header('Location: http://localhost/bathfinder/user/login');
 
       }
     }
@@ -284,7 +284,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
                             <td>" . $b['MatTubName'] . "</td>
                             <td>" . $b['Comments'] . "</td>
                             <td>
-                              <a href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&tubid=" . $b['TubID'] . "'>Print</a>
+                              <a href='http://localhost/bathfinder/bathtub/print/" . $b['TubID'] . "'>Print</a>
                             </td>
                           </tr>
                     

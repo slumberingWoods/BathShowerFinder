@@ -1,6 +1,6 @@
 <?php namespace views;
 
-echo '<a href="http://localhost/bathfinder/index.php?resource=sales&action=list">Return to sales</a>';
+echo '<a href="http://localhost/bathfinder/sales/list">Return to sales</a>';
 
 echo '<br/>';
 ?>
@@ -58,7 +58,7 @@ class SalesListbyproduct{
         }else{//user not logged in
 
             header('HTTP/1.1 401 Unauthorized');
-            header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
+            header('Location: http://localhost/bathfinder/user/login');
             
         } 
     }

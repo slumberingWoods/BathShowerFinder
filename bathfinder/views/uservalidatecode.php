@@ -20,9 +20,11 @@ class UserValidatecode{
 
         $this->user = $user;
 
+        
+
         if(isset($_POST['twofacode'])){
             if($this->user->getOTPcodeisvalid()){
-
+                
                 header('Location: http://localhost/bathfinder/bathtub/list');
 
             }else

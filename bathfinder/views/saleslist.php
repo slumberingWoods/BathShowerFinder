@@ -49,7 +49,7 @@ class SalesList{
       }else{//user not logged in
 
         header('HTTP/1.1 401 Unauthorized');
-        header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
+        header('Location: http://localhost/bathfinder/user/login');
         
       } 
   }

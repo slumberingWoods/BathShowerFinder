@@ -1,6 +1,6 @@
 <?php namespace views;
 
-echo '<a href="http://localhost/bathfinder/index.php?resource=sales&action=list">Return to sales</a>';
+echo '<a href="http://localhost/bathfinder/sales/list">Return to sales</a>';
 
 echo '<br/>';
 ?>
