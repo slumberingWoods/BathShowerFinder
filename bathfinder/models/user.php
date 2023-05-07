@@ -88,8 +88,7 @@ class User{
 
 
         return $statement2->execute(['user_id' => $usrId, 'aplus'=> 0, 'amin'=> 0, 'bplus'=> 0,
-            'bmin' => 0, 'cplus' => 0, 'dplus' => 0, 'dmin' => 0, 
-            'bmin' => 0, 'cplus' => 0, 'cmin' => 0, 'dplus' => 0, 'dmin' => 0, 
+            'bmin' => 0, 'cplus' => 0, 'dplus' => 0, 'dmin' => 0, 'cmin' => 0, 
             'eplus' => 0, 'emin' => 0, 'fplus' => 0, 'fmin' => 0,
             'gplus' => 0, 'gmin' => 0, 'hplus' => 0, 'hmin' => 0]);
 

@@ -89,6 +89,11 @@ class SalesController{
                             $view->render($this->sales->$action($_POST['productType'], $_POST['productId']));
                         }
                     }
+                    else if($action == 'update'){
+                        $view->render($this->sales->listbyproductid($sale->getProductType(), $_GET['id']));
+                        if(isset($_POST['productType']) && isset($_POST['productID']) && isset($_POST['customerName']) && isset($_POST['saleAmount']) && isset($_POST['isPaid'])){
+                        }
+                    }
                 }
             }
         }

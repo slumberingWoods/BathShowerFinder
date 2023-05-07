@@ -136,6 +136,12 @@ class Sales{
 
         return $statement->fetchAll();
     }
-    
+    function update($productType, $productID, $customerName, $saleAmount, $isPaid) {
+        $query = "update sales set productType = :productType, productID = :productID, customerName = :customerName, saleAmount = :saleAmount, isPaid = :isPaid where sale_id = :saleId";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        return $statement->execute(['productType'=> $productType, 'productID'=> $productID, 'customerName'=> $customerName, 'saleAmount'=> $saleAmount, 'isPaid'=> $isPaid, 'saleId'=> $this->salesId]);
+    }
 }
 ?>

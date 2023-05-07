@@ -85,7 +85,9 @@ class SalesList{
                 <td>".$s['customerName']."</td>
                 <td>".$s['saleAmount']."</td>
                 <td>".$s['isPaid']."</td>
-                </tr>";
+                <td>".'<a href="http://localhost/bathfinder/sales/update" class="button">Update</a></td>'.
+                "<td>".'<a href="http://localhost/bathfinder/sales/delete" class="button">Update</a></td>'.
+                "</tr>";
     }
     $html .= "</table>";
 

@@ -69,7 +69,10 @@ class BathtubList{
     echo '<br/>';
     
     if($this->user->getIsAdmin()) {
-      echo '<a href="http://localhost/bathfinder/user/list">Sales</a>';
+      echo '<a href="http://localhost/bathfinder/user/list">User</a>';
+
+      echo '<br/>';
+      echo '<a href="http://localhost/bathfinder/sales/list">Sales</a>';
 
       echo '<br/>';
     }
