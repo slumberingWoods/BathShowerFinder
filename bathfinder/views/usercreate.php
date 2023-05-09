@@ -38,7 +38,7 @@ class UserCreate{
 
     $this->user->getMembershipProvider()->login();
 
-    header("location: http://localhost/bathfinder/user/setuptwofa");
+    header("location: http://localhost/bathfinder/user/setuptwofa", true, 301);
 
     }
     
