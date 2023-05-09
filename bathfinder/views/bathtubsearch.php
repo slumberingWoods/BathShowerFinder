@@ -72,8 +72,8 @@ require(dirname(__DIR__) . "/models/tolerance.php");
       } else { //user not logged in
   
         header('HTTP/1.1 401 Unauthorized');
-        header('Location: http://localhost/bathfinder/user/login');
-
+        //header('Location: http://localhost/bathfinder/user/login');
+        header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
       }
     }
 
@@ -86,11 +86,13 @@ require(dirname(__DIR__) . "/models/tolerance.php");
       echo $this->welcomeMessage;
       echo '<br/>';
 
-      echo '<a href="http://localhost/bathfinder/user/logout">Logout</a>';
+      //echo '<a href="http://localhost/bathfinder/user/logout">Logout</a>';
+      echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
 
       echo '<br/>';
 
-      echo '<a href="http://localhost/bathfinder/bathtub/list">List</a>';
+      //echo '<a href="http://localhost/bathfinder/bathtub/list">List</a>';
+      echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=list">List</a>';
 
       if(isset($_POST)){
         if(isset($_POST['submitButton'])){
@@ -284,7 +286,8 @@ require(dirname(__DIR__) . "/models/tolerance.php");
                             <td>" . $b['MatTubName'] . "</td>
                             <td>" . $b['Comments'] . "</td>
                             <td>
-                              <a href='http://localhost/bathfinder/bathtub/print/" . $b['TubID'] . "'>Print</a>
+                             <!-- <a href='http://localhost/bathfinder/bathtub/print/" . $b['TubID'] . "'>Print</a>-->
+                              <a href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&id=" . $b['TubID'] . "'>Print</a>
                             </td>
                           </tr>
                     
