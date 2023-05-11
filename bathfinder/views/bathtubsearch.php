@@ -91,10 +91,6 @@ require(dirname(__DIR__) . "/models/tolerance.php");
 
     function render($data)
     {
-
-
-      $searchResults = $data;
-
       echo $this->welcomeMessage;
       echo '<br/>';
 
@@ -133,7 +129,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
         }
       }
 
-      $bathtubs = $data[0];
+      $bathtubs = $data;
 
       $html = '<form action="" method="post">
                 <h2>Measurements</h2>
