@@ -49,7 +49,8 @@ class SalesList{
       }else{//user not logged in
 
         header('HTTP/1.1 401 Unauthorized');
-        header('Location: http://localhost/bathfinder/user/login');
+        //header('Location: http://localhost/bathfinder/user/login');
+        header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
         
       } 
   }
@@ -85,8 +86,8 @@ class SalesList{
                 <td>".$s['customerName']."</td>
                 <td>".$s['saleAmount']."</td>
                 <td>".$s['isPaid']."</td>
-                <td>".'<a href="http://localhost/bathfinder/sales/update" class="button">Update</a></td>'.
-                "<td>".'<a href="http://localhost/bathfinder/sales/delete" class="button">Update</a></td>'.
+                <td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=update" class="button">Update</a></td>'.
+                "<td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=delete" class="button">Update</a></td>'.
                 "</tr>";
     }
     $html .= "</table>";

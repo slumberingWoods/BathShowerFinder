@@ -34,8 +34,8 @@ class UserSetupTwofa{
         echo $html;
 
         echo '</br>';
-        echo '<a href="http://localhost/bathfinder/user/login">Continue</a>';
-
+       // echo '<a href="http://localhost/bathfinder/user/login">Continue</a>';
+       echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=login">Continue</a>';
 
     }
 

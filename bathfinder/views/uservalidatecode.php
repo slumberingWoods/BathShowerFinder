@@ -25,9 +25,9 @@ class UserValidatecode{
         if(isset($_POST['twofacode'])){
             if($this->user->getOTPcodeisvalid()){
                 
-                header('Location: http://localhost/bathfinder/bathtub/list', true, 301);
+                //header('Location: http://localhost/bathfinder/bathtub/list', true, 301);
 
-                //header('Location: http://localhost/bathfinder/index.php?resource=bathtub&action=list');
+                header('Location: http://localhost/bathfinder/index.php?resource=bathtub&action=list');
 
                
             }else{
