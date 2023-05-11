@@ -90,7 +90,7 @@ class SalesList{
                 <td>".$s['saleAmount']."</td>
                 <td>".$bool."</td>
                 <td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=update&id='.$s['salesId'].'" class="button">Update</a></td>'.
-                "<td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=delete" class="button">Update</a></td>'.
+                "<td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=delete&id='.$s['salesId'].'" class="button" onclick="return confirm("Are you sure?")>Delete</a></td>'.
                 "</tr>";
     }
     $html .= "</table>";

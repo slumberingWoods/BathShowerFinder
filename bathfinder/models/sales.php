@@ -152,5 +152,12 @@ class Sales{
 
         return $statement->fetchAll();
     }
+    function delete() {
+        $query = "delete from sales where salesId = :salesId;";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        return $statement->execute(['salesId'=> $this->salesId]);
+    }
 }
 ?>

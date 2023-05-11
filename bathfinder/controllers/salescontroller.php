@@ -74,6 +74,7 @@ class SalesController{
                             // OR we will have to do a conditional logic to check what the action is and call
                             // the appropriate function in the model
                             $this->sales->$action();
+                            header("location:http://localhost/bathfinder/index.php?resource=sales&action=list");
                         }
                     } else if($action == 'listbyuser'){
                         if(isset($_POST['user_id'])){
@@ -103,6 +104,13 @@ class SalesController{
                                 $this->sales->setIsPaid(false);
                             }
                             $this->sales->$action();
+                            header("location:http://localhost/bathfinder/index.php?resource=sales&action=list");
+                        }
+                    } else if($action == 'delete') {
+                        $this->sales->setSalesId($_GET['id']);
+                        if(isset($_POST['confirm'])) {
+                            $this->sales->$action();
+                            header("location:http://localhost/bathfinder/index.php?resource=sales&action=list");
                         }
                     }
                 }
