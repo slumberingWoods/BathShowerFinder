@@ -54,6 +54,14 @@ class BathtubController{
                         $view->render($bathtubs);
 
                     }
+
+                    if($action == 'update') {
+
+                        $TubID = $_GET['TubID'];
+
+                        $view->render($bathtub->getBathtubByTubID($TubID));
+
+                    }
                 }
             }
         }

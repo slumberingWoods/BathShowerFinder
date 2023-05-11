@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2023 at 08:39 AM
+-- Generation Time: May 11, 2023 at 11:10 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -31,23 +31,17 @@ CREATE TABLE `shower` (
   `MoldName` varchar(50) NOT NULL,
   `NoMold` varchar(20) NOT NULL,
   `ShowerID` int(11) NOT NULL,
-  `Material` varchar(3) NOT NULL,
   `DimA` float NOT NULL,
   `DimB` float NOT NULL,
   `DimC` float NOT NULL,
   `DimD` float NOT NULL,
   `DimE` float NOT NULL,
   `DimF` float NOT NULL,
-  `IdFront` int(11) NOT NULL,
-  `IdDoor` int(11) NOT NULL,
-  `IdMatShower` int(11) NOT NULL,
-  `ShowerTime` int(11) DEFAULT NULL,
   `Comments` varchar(200) NOT NULL,
   `IdImage` blob DEFAULT NULL,
   `FrontName` varchar(30) NOT NULL,
   `DoorName` varchar(30) NOT NULL,
   `MatShowerName` varchar(30) NOT NULL,
-  `RegionAvailable` varchar(20) NOT NULL,
   `Price` decimal(20,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

@@ -44,6 +44,18 @@ require(dirname(__DIR__) . "/models/tolerance.php");
       color: white;
     }
   </style>
+
+  <script>
+    function selectRow(row) {
+      if (document.getElementById('expand' + row.id).style.display == 'none') {
+        document.getElementById('expand' + row.id).setAttribute('style', 'display: table-row');
+      }
+      else {
+        document.getElementById('expand' + row.id).setAttribute('style', 'display: none');
+      }
+
+    }
+  </script>
 </head>
 
 <body>
@@ -56,7 +68,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
 
     private $welcomeMessage;
 
-    private $tol; 
+    private $tol;
 
     public function __construct($user)
     {
@@ -77,11 +89,11 @@ require(dirname(__DIR__) . "/models/tolerance.php");
       }
     }
 
-    function render(...$data)
+    function render($data)
     {
 
 
-      $searchResults = $data[0];
+      $searchResults = $data;
 
       echo $this->welcomeMessage;
       echo '<br/>';
@@ -94,11 +106,11 @@ require(dirname(__DIR__) . "/models/tolerance.php");
       //echo '<a href="http://localhost/bathfinder/bathtub/list">List</a>';
       echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=list">List</a>';
 
-      if(isset($_POST)){
-        if(isset($_POST['submitButton'])){
-          if ($_POST['submitButton'] == 'Load Tolerances'){
+      if (isset($_POST)) {
+        if (isset($_POST['submitButton'])) {
+          if ($_POST['submitButton'] == 'Load Tolerances') {
             $this->tol->loadTolerances($this->user->getUserId());
-          
+
             $_POST['DimAPlus'] = $this->tol->getAplus();
             $_POST['DimAMinus'] = $this->tol->getAmin();
             $_POST['DimBPlus'] = $this->tol->getBplus();
@@ -116,7 +128,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
             $_POST['DimHPlus'] = $this->tol->getHplus();
             $_POST['DimHMinus'] = $this->tol->getHmin();
 
-          
+
           }
         }
       }
@@ -233,89 +245,80 @@ require(dirname(__DIR__) . "/models/tolerance.php");
           if ($_POST['submitButton'] == 'Search') {
             $html = '<table id="bathtubsTable">';
             $html .= "<th>MoldName</th>
-                <th>NoMold</th>
-                <th>DimA</th>
-                <th>DimB</th>
-                <th>DimC</th>
-                <th>DimD</th>
-                <th>DimE</th>
-                <th>DimF</th>
-                <th>DimG</th>
-                <th>DimH</th>
-                <th>Price</th>";
+                    <th>NoMold</th>
+                    <th>DimA</th>
+                    <th>DimB</th>
+                    <th>DimC</th>
+                    <th>DimD</th>
+                    <th>DimE</th>
+                    <th>DimF</th>
+                    <th>DimG</th>
+                    <th>DimH</th>
+                    <th>Price</th>
+                    <th>Edit</th>";
 
             $i = 0;
             foreach ($bathtubs as $b) {
 
-              $html .= "<tr id='" . $i . "' onClick='selectRow(this)'>
-                    <td>" . $b['MoldName'] . "</td>
-                    <td>" . $b['NoMold'] . "</td>
-                    <td>" . $b['DimA'] . "</td>
-                    <td>" . $b['DimB'] . "</td>
-                    <td>" . $b['DimC'] . "</td>
-                    <td>" . $b['DimD'] . "</td>
-                    <td>" . $b['DimE'] . "</td>
-                    <td>" . $b['DimF'] . "</td>
-                    <td>" . $b['DimG'] . "</td>
-                    <td>" . $b['DimH'] . "</td>
-                    <td>" . $b['Price'] . "</td>
-                    </tr>
-
-                    <tr id='expand" . $i . "' style='display: none'>
-                      <td colspan=11 style='padding: 0px 0px 0px 0px'>
-                        <table id='infoTable'>
-                          <th>Image</th>
-                          <th>Front</th>
-                          <th>Back</th>
-                          <th>Sides</th>
-                          <th>Mold Name</th>
-                          <th>No Mold</th>
-                          <th>Material</th>
-                          <th>Comments</th>
-                          <th>Print</th>
-
-                          <tr>
-                            <td>
-                              <img src='data:image/jpeg;base64," . base64_encode($b['IdImage']) . "' width='300px'/>
-                            </td>
-                            <td>" . $b['FrontName'] . "</td>
-                            <td>" . $b['BackName'] . "</td>
-                            <td>" . $b['SideName'] . "</td>
-                            <td>" . $b['MoldName'] . "</td>
-                            <td>" . $b['NoMold'] . "</td>
-                            <td>" . $b['MatTubName'] . "</td>
-                            <td>" . $b['Comments'] . "</td>
-                            <td>
-                             <a href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&id=" . $b['TubID'] . "'>Print</a>-
-                              
-                            </td>
-                          </tr>
-                    
-                        </table>
-                      </td>
-                    </tr>";
+              $html .= "<tr id='" . $b['TubID'] . "' onClick='selectRow(this)'>
+                        <td>" . $b['MoldName'] . "</td>
+                        <td>" . $b['NoMold'] . "</td>
+                        <td>" . $b['DimA'] . "</td>
+                        <td>" . $b['DimB'] . "</td>
+                        <td>" . $b['DimC'] . "</td>
+                        <td>" . $b['DimD'] . "</td>
+                        <td>" . $b['DimE'] . "</td>
+                        <td>" . $b['DimF'] . "</td>
+                        <td>" . $b['DimG'] . "</td>
+                        <td>" . $b['DimH'] . "</td>
+                        <td>" . $b['Price'] . "</td>
+                        <td>
+                            <button onclick=\"location.href='index.php?resource=bathtub&action=update&TubID=" . $b['TubID'] . "'\">Edit</button>
+                        </td>
+                        </tr>
+    
+                        <tr id='expand" . $b['TubID'] . "' style='display: none'>
+                          <td colspan=11 style='padding: 0px 0px 0px 0px'>
+                            <table id='infoTable'>
+                              <th>Image</th>
+                              <th>Front</th>
+                              <th>Back</th>
+                              <th>Side</th>
+                              <th>Mold Name</th>
+                              <th>No Mold</th>
+                              <th>Material</th>
+                              <th>Comments</th>
+                              <th>Print</th>
+    
+                              <tr>
+                                <td>
+                                  <img src='data:image/jpeg;base64," . base64_encode($b['IdImage']) . "' width='300px'/>
+                                </td>
+                                <td>" . $b['FrontName'] . "</td>
+                                <td>" . $b['BackName'] . "</td>
+                                <td>" . $b['SideName'] . "</td>
+                                <td>" . $b['MoldName'] . "</td>
+                                <td>" . $b['NoMold'] . "</td>
+                                <td>" . $b['MatTubName'] . "</td>
+                                <td>" . $b['Comments'] . "</td>
+                                <td>
+                                 <a href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&TubID=" . $b['TubID'] . "'>Print</a>
+                                </td>
+                              </tr>
+                        
+                            </table>
+                          </td>
+                        </tr>";
               $i++;
             }
 
             $html .= "</table>";
 
-            $html .= "<script>
-                function selectRow(row) {
-                  if(document.getElementById('expand' + row.id).style.display == 'none') {
-                    document.getElementById('expand' + row.id).setAttribute('style', 'display: table-row');
-                  }
-                  else {
-                    document.getElementById('expand' + row.id).setAttribute('style', 'display: none');
-                  }
-                  
-                }
-              </script>";
-
             echo $html;
           } else if ($_POST['submitButton'] == 'Save Tolerances') {
-            
-           // $tol = new \models\Tolerance();
 
+            // $tol = new \models\Tolerance();
+  
             $this->tol->setAllTolerances(
               $this->user->getUserId(),
               $_POST['DimAPlus'],
@@ -338,7 +341,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
 
             $this->tol->saveTolerance();
 
-          }            
+          }
         }
 
       }

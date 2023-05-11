@@ -18,7 +18,6 @@ class Bathtub
     private $MoldName;
     private $NoMold;
     private $TubID;
-    private $Material;
     private $DimA;
     private $DimB;
     private $DimC;
@@ -27,18 +26,12 @@ class Bathtub
     private $DimF;
     private $DimG;
     private $DimH;
-    private $IdFront;
-    private $IdBack;
-    private $IdMatTub;
-    private $IdSide;
-    private $TubTime;
     private $Comments;
     private $IdImage;
     private $SideName;
     private $BackName;
     private $FrontName;
     private $MatTubName;
-    private $RegionAvailable;
     private $Price;
 
     private $dbConnection;
@@ -49,6 +42,11 @@ class Bathtub
         $conManager = new \database\DBConnectionManager();
 
         $this->dbConnection = $conManager->getConnection();
+
+        // https://www.geeksforgeeks.org/how-to-call-php-function-on-the-click-of-a-button/
+        if (array_key_exists('update', $_GET)) {
+            $this->updateBathtub();
+        }
 
     }
 
@@ -177,24 +175,62 @@ class Bathtub
                         $NoMold = $_POST['NoMold'];
                     }
 
-                    $query = "select * from bathtub where DimA >= $DimAMin and DimA <= $DimAMax and 
-                    DimB >= $DimBMin and DimB <= $DimBMax and 
-                    DimC >= $DimCMin and DimC <= $DimCMax and 
-                    DimD >= $DimDMin and DimD <= $DimDMax and 
-                    DimE >= $DimEMin and DimE <= $DimEMax and 
-                    DimF >= $DimFMin and DimF <= $DimFMax and 
-                    DimG >= $DimGMin and DimG <= $DimGMax and 
-                    DimH >= $DimHMin and DimH <= $DimHMax and
-                    FrontName like '%$FrontModel%' and
-                    BackName like '%$BackModel%' and
-                    SideName like '%$Side%' and
-                    MatTubName like '%$Material%' and
-                    MoldName like '%$Family%' and
-                    NoMold like '%$NoMold%'";
+                    // $query = "select * from bathtub where DimA >= $DimAMin and DimA <= $DimAMax and 
+                    // DimB >= $DimBMin and DimB <= $DimBMax and 
+                    // DimC >= $DimCMin and DimC <= $DimCMax and 
+                    // DimD >= $DimDMin and DimD <= $DimDMax and 
+                    // DimE >= $DimEMin and DimE <= $DimEMax and 
+                    // DimF >= $DimFMin and DimF <= $DimFMax and 
+                    // DimG >= $DimGMin and DimG <= $DimGMax and 
+                    // DimH >= $DimHMin and DimH <= $DimHMax and
+                    // FrontName like '%$FrontModel%' and
+                    // BackName like '%$BackModel%' and
+                    // SideName like '%$Side%' and
+                    // MatTubName like '%$Material%' and
+                    // MoldName like '%$Family%' and
+                    // NoMold like '%$NoMold%'";
+
+                    $query = "select * from bathtub where DimA >= :DimAMin and DimA <= :DimAMax and 
+                    DimB >= :DimBMin and DimB <= :DimBMax and 
+                    DimC >= :DimCMin and DimC <= :DimCMax and 
+                    DimD >= :DimDMin and DimD <= :DimDMax and 
+                    DimE >= :DimEMin and DimE <= :DimEMax and 
+                    DimF >= :DimFMin and DimF <= :DimFMax and 
+                    DimG >= :DimGMin and DimG <= :DimGMax and 
+                    DimH >= :DimHMin and DimH <= :DimHMax and
+                    FrontName like :FrontModel and
+                    BackName like :BackModel and
+                    SideName like :Side and
+                    MatTubName like :Material and
+                    MoldName like :Family and
+                    NoMold like :NoMold";
 
                     $statement = $this->dbConnection->prepare($query);
 
-                    $statement->execute();
+                    $statement->execute([
+                        'DimAMin' => $DimAMin,
+                        'DimAMax' => $DimAMax,
+                        'DimBMin' => $DimBMin,
+                        'DimBMax' => $DimBMax,
+                        'DimCMin' => $DimCMin,
+                        'DimCMax' => $DimCMax,
+                        'DimDMin' => $DimDMin,
+                        'DimDMax' => $DimDMax,
+                        'DimEMin' => $DimEMin,
+                        'DimEMax' => $DimEMax,
+                        'DimFMin' => $DimFMin,
+                        'DimFMax' => $DimFMax,
+                        'DimGMin' => $DimGMin,
+                        'DimGMax' => $DimGMax,
+                        'DimHMin' => $DimHMin,
+                        'DimHMax' => $DimHMax,
+                        'FrontModel' => "%$FrontModel%",
+                        'BackModel' => "%$BackModel%",
+                        'Side' => "%$Side%",
+                        'Material' => "%$Material%",
+                        'Family' => "%$Family%",
+                        'NoMold' => "%$NoMold%",
+                    ]);
 
                     return $statement->fetchAll();
                 }
@@ -205,7 +241,104 @@ class Bathtub
         return array();
     }
 
+    function updateBathtub()
+    {
 
+        if (isset($_POST)) {
+
+            // https://pqina.nl/blog/image-upload-with-php/
+            // https://stackoverflow.com/questions/3967515/how-to-convert-an-image-to-base64-encoding
+            
+            // update image if file was uploaded
+            if ($_FILES["Image"]["size"] != 0) {
+                
+                $image_file = $_FILES["Image"];
+                $target_file = __DIR__ . $image_file["name"];
+
+                move_uploaded_file(
+                    // Temp image location
+                    $image_file["tmp_name"],
+
+                    // New image location, __DIR__ is the location of the current PHP file
+                    $target_file
+                );
+
+
+                $type = pathinfo($target_file, PATHINFO_EXTENSION);
+                $data = file_get_contents($target_file);
+                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                unlink($target_file);
+
+                $query = "update bathtub set 
+                IdImage = :IdImage
+                where TubID = :TubID";
+
+                $statement = $this->dbConnection->prepare($query);
+
+                $statement->execute([
+                    'IdImage' => $data,
+                    'TubID' => $_POST['TubID'],
+                ]);
+            }
+
+        }
+
+        // update rest of the columns
+        $query = "update bathtub set 
+        MoldName = :MoldName, 
+        NoMold = :NoMold, 
+        DimA = :DimA, 
+        DimB = :DimB, 
+        DimC = :DimC, 
+        DimD = :DimD, 
+        DimE = :DimE, 
+        DimF = :DimF, 
+        DimG = :DimG, 
+        DimH = :DimH,
+        Comments = :Comments,
+        SideName = :SideName,
+        BackName = :BackName,
+        FrontName = :FrontName,
+        MatTubName = :MatTubName,
+        Price = :Price
+        where TubID = :TubID";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute([
+            'MoldName' => $_POST['MoldName'],
+            'NoMold' => $_POST['NoMold'],
+            'DimA' => $_POST['DimA'],
+            'DimB' => $_POST['DimB'],
+            'DimC' => $_POST['DimC'],
+            'DimD' => $_POST['DimD'],
+            'DimE' => $_POST['DimE'],
+            'DimF' => $_POST['DimF'],
+            'DimG' => $_POST['DimG'],
+            'DimH' => $_POST['DimH'],
+            'Comments' => $_POST['Comments'],
+            'FrontName' => $_POST['FrontName'],
+            'BackName' => $_POST['BackName'],
+            'SideName' => $_POST['SideName'],
+            'MatTubName' => $_POST['MatTubName'],
+            'Price' => $_POST['Price'],
+            'TubID' => $_POST['TubID'],
+        ]);
+
+        return;
+
+    }
+
+    function getBathtubByTubID($TubID)
+    {
+        $query = "select * from bathtub where TubID = :TubID";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute(['TubID' => $TubID]);
+
+        return $statement->fetchAll();
+    }
 
 
 }
