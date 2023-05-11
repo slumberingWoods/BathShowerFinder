@@ -90,8 +90,19 @@ class SalesController{
                         }
                     }
                     else if($action == 'update'){
-                        $view->render($this->sales->listbyproductid($sale->getProductType(), $_GET['id']));
-                        if(isset($_POST['productType']) && isset($_POST['productID']) && isset($_POST['customerName']) && isset($_POST['saleAmount']) && isset($_POST['isPaid'])){
+                        $view->render($this->sales->getFromId($_GET['id']));
+                        if(isset($_POST['productType']) && isset($_POST['productID']) && isset($_POST['customerName']) && isset($_POST['saleAmount'])){
+                            $this->sales->setSalesId($_GET['id']);
+                            $this->sales->setProductType($_POST['productType']);
+                            $this->sales->setProductId($_POST['productID']);
+                            $this->sales->setCustomerName($_POST['customerName']);
+                            $this->sales->setSaleAmount($_POST['saleAmount']);
+                            if (isset($_POST['isPaid'])){
+                                $this->sales->setIsPaid(true);
+                            }else{
+                                $this->sales->setIsPaid(false);
+                            }
+                            $this->sales->$action();
                         }
                     }
                 }
