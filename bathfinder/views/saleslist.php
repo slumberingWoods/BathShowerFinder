@@ -78,16 +78,19 @@ class SalesList{
             <th>Is Paid</th>";
 
     foreach($sales as $s){
-        
+                $bool = "False";
+                if($s['isPaid'] == 1) {
+                  $bool = "True";
+                }
                 $html .=  "<tr>
                 <td>".$s['user_id']."</td>
                 <td>".$s['productType']."</td>
                 <td>".$s['productID']."</td>
                 <td>".$s['customerName']."</td>
                 <td>".$s['saleAmount']."</td>
-                <td>".$s['isPaid']."</td>
-                <td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=update" class="button">Update</a></td>'.
-                "<td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=delete" class="button">Update</a></td>'.
+                <td>".$bool."</td>
+                <td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=update&id='.$s['salesId'].'" class="button">Update</a></td>'.
+                "<td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=delete&id='.$s['salesId'].'" class="button" onclick="return confirm("Are you sure?")>Delete</a></td>'.
                 "</tr>";
     }
     $html .= "</table>";

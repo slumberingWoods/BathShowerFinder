@@ -65,27 +65,34 @@ class SalesListbyproduct{
     }
     function render(...$data){
         $sales = $data[0];
-    
-        $html = '<table id="salesTable">';
-        $html .= "<th>userId</th>
-                <th>Product Type</th>
-                <th>Product id</th>
-                <th>Customer Name</th>
-                <th>Sale Amount</th>
-                <th>Is Paid</th>";
-    
-        foreach($sales as $s){
-            
-                    $html .=  "<tr>
-                    <td>".$s['user_id']."</td>
-                    <td>".$s['productType']."</td>
-                    <td>".$s['productID']."</td>
-                    <td>".$s['customerName']."</td>
-                    <td>".$s['saleAmount']."</td>
-                    <td>".$s['isPaid']."</td>
-                    </tr>";
+
+        $html = "";
+
+        if(count($sales) > 0) {
+      
+          $html .= '<table id="salesTable">';
+          $html .= "<th>userId</th>
+                  <th>Product Type</th>
+                  <th>Product id</th>
+                  <th>Customer Name</th>
+                  <th>Sale Amount</th>
+                  <th>Is Paid</th>";
+      
+          foreach($sales as $s){
+              
+                      $html .=  "<tr>
+                      <td>".$s['user_id']."</td>
+                      <td>".$s['productType']."</td>
+                      <td>".$s['productID']."</td>
+                      <td>".$s['customerName']."</td>
+                      <td>".$s['saleAmount']."</td>
+                      <td>".$s['isPaid']."</td>
+                      </tr>";
+          }
+          $html .= "</table>";
+        } else {
+          $html .= "Sales not found.";
         }
-        $html .= "</table>";
     
         echo $html;
     }

@@ -128,7 +128,7 @@ class Sales{
         return $statement->fetchAll();
     }
     function listbyproductid($productType, $productId) {
-        $query = "select * from sales where productType = :productType and productId = :productId";
+        $query = "select * from sales where productType = :productType and productID = :productId";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -136,12 +136,28 @@ class Sales{
 
         return $statement->fetchAll();
     }
-    function update($productType, $productID, $customerName, $saleAmount, $isPaid) {
-        $query = "update sales set productType = :productType, productID = :productID, customerName = :customerName, saleAmount = :saleAmount, isPaid = :isPaid where sale_id = :saleId";
+    function update() {
+        $query = "update sales set productType = :productType, productID = :productId, customerName = :customerName, saleAmount = :saleAmount, isPaid = :isPaid where salesId = :salesId;";
 
         $statement = $this->dbConnection->prepare($query);
 
-        return $statement->execute(['productType'=> $productType, 'productID'=> $productID, 'customerName'=> $customerName, 'saleAmount'=> $saleAmount, 'isPaid'=> $isPaid, 'saleId'=> $this->salesId]);
+        return $statement->execute(['productType'=> $this->productType, 'productId'=> $this->productId, 'customerName'=> $this->customerName, 'saleAmount'=> $this->saleAmount, 'isPaid'=> $this->isPaid, 'salesId'=> $this->salesId]);
+    }
+    function getFromId($salesId) {
+        $query = "select * from sales where salesId = :salesId";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute(['salesId'=> $salesId]);
+
+        return $statement->fetchAll();
+    }
+    function delete() {
+        $query = "delete from sales where salesId = :salesId;";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        return $statement->execute(['salesId'=> $this->salesId]);
     }
 }
 ?>
