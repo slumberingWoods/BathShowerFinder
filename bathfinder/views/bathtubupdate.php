@@ -2,8 +2,6 @@
 
 namespace views;
 
-$bathtub
-
     ?>
 
 <html>
@@ -100,6 +98,14 @@ $bathtub
                 header('Location: http://localhost/bathfinder/index.php?resource=bathtub&action=list');
             }
 
+            if (isset($_POST['delete'])) {
+                $bathtub = new \models\Bathtub();
+
+                $bathtub->deleteBathtub();
+
+                header('Location: http://localhost/bathfinder/index.php?resource=bathtub&action=list');
+            }
+
             $bathtub = $data[0];
 
             $html = "<form id='form' method='post' enctype='multipart/form-data'>
@@ -176,7 +182,7 @@ $bathtub
             <br>
     
             <br>
-            <input type='submit' name='update' value='Update'>
+            <input type='submit' name='update' value='Update'><input type='submit' name='delete' value='Delete'>
             <br>
         </form>";
 

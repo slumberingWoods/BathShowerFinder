@@ -96,8 +96,16 @@ namespace views;
       echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
       echo '<br/>';
 
+      echo '<a href="http://localhost/bathfinder/index.php?resource=shower&action=list">Shower</a>';
+      //echo '<a href="http://localhost/bathfinder/bathtub/list">Shower</a>';
+      echo '<br/>';
+
       echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=search">Search</a>';
       //echo '<a href="http://localhost/bathfinder/bathtub/search">Search</a>';
+      echo '<br/>';
+
+      //echo '<a href="http://localhost/bathfinder/bathtub/create">List</a>';
+      echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=create">Create</a>';
       echo '<br/>';
 
       if ($this->user->getIsAdmin()) {
@@ -171,7 +179,7 @@ namespace views;
                                 <td>" . $b['MatTubName'] . "</td>
                                 <td>" . $b['Comments'] . "</td>
                                 <td>
-                                 <a href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&TubID=" . $b['TubID'] . "'>Print</a>
+                                 <a target='_blank' href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&TubID=" . $b['TubID'] . "'>Print</a>
                                 </td>
                               </tr>
                         

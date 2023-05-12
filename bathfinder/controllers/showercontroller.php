@@ -21,11 +21,9 @@ class ShowerController{
                 $viewClass = "\\views\\"."Shower".ucfirst($action);
 
                 $shower = new \models\Shower();
-
-                $showers = $shower->getAll();
                
                 $this->user = new \models\User();
-               
+                
                 // Read the username from the cookie
                 if(isset($_COOKIE)){
                     if(isset($_COOKIE['bathfinderuser'])){
@@ -37,12 +35,47 @@ class ShowerController{
                     }
                 }
                
-                if(class_exists($viewClass)){
+                if(class_exists($viewClass)) {
 
                     $view = new $viewClass($this->user);
 
-                    $view->render($showers);
+                    if($action == 'list') {
 
+                        $showers = $shower->getAll();
+
+                        $view->render($showers);
+
+                    }
+
+                    if($action == 'search') {
+
+                        $showers = $shower->search();
+
+                        $view->render($showers);
+
+                    }
+
+                    if($action == 'update') {
+
+                        $ShowerID = $_GET['ShowerID'];
+
+                        $view->render($shower->getShowerByShowerID($ShowerID));
+
+                    }
+
+                    if($action == 'print') {
+
+                        $ShowerID = $_GET['ShowerID'];
+
+                        $view->render($shower->getShowerByShowerID($ShowerID));
+
+                    }
+
+                    if($action == 'create') {
+
+                        $view->render();
+
+                    }
                 }
             }
         }

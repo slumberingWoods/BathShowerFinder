@@ -244,44 +244,39 @@ class Bathtub
     function updateBathtub()
     {
 
-        if (isset($_POST)) {
+        // https://pqina.nl/blog/image-upload-with-php/
+        // https://stackoverflow.com/questions/3967515/how-to-convert-an-image-to-base64-encoding
 
-            // https://pqina.nl/blog/image-upload-with-php/
-            // https://stackoverflow.com/questions/3967515/how-to-convert-an-image-to-base64-encoding
-            
-            // update image if file was uploaded
-            if ($_FILES["Image"]["size"] != 0) {
-                
-                $image_file = $_FILES["Image"];
-                $target_file = __DIR__ . $image_file["name"];
+        // update image if file was uploaded
+        if ($_FILES["Image"]["size"] != 0) {
 
-                move_uploaded_file(
-                    // Temp image location
-                    $image_file["tmp_name"],
+            $image_file = $_FILES["Image"];
+            $target_file = __DIR__ . $image_file["name"];
 
-                    // New image location, __DIR__ is the location of the current PHP file
-                    $target_file
-                );
+            move_uploaded_file(
+                // Temp image location
+                $image_file["tmp_name"],
 
+                // New image location, __DIR__ is the location of the current PHP file
+                $target_file
+            );
 
-                $type = pathinfo($target_file, PATHINFO_EXTENSION);
-                $data = file_get_contents($target_file);
-                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                unlink($target_file);
+            $data = file_get_contents($target_file);
+            unlink($target_file);
 
-                $query = "update bathtub set 
+            $query = "update bathtub set 
                 IdImage = :IdImage
                 where TubID = :TubID";
 
-                $statement = $this->dbConnection->prepare($query);
+            $statement = $this->dbConnection->prepare($query);
 
-                $statement->execute([
-                    'IdImage' => $data,
-                    'TubID' => $_POST['TubID'],
-                ]);
-            }
-
+            $statement->execute([
+                'IdImage' => $data,
+                'TubID' => $_POST['TubID'],
+            ]);
         }
+
+
 
         // update rest of the columns
         $query = "update bathtub set 
@@ -329,6 +324,66 @@ class Bathtub
 
     }
 
+    function createBathtub()
+    {
+        $query = "INSERT INTO `bathtub` (`MoldName`, `NoMold`, `TubID`, 
+        `DimA`, `DimB`, `DimC`, `DimD`, `DimE`, `DimF`, `DimG`, `DimH`, 
+        `Comments`, `IdImage`, `SideName`, `BackName`, `FrontName`, `MatTubName`, `Price`) VALUES 
+        (:MoldName, :NoMold, :TubID, :DimA, :DimB, :DimC, :DimD, :DimE, :DimF, :DimG, :DimH, 
+        :Comments, :IdImage, :SideName, :BackName, :FrontName, :MatTubName, :Price)";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $IdImage = null;
+
+        // https://pqina.nl/blog/image-upload-with-php/
+        // https://stackoverflow.com/questions/3967515/how-to-convert-an-image-to-base64-encoding
+
+        // set image id if image was uploaded
+        if ($_FILES["Image"]["size"] != 0) {
+
+            $image_file = $_FILES["Image"];
+            $target_file = __DIR__ . $image_file["name"];
+
+            move_uploaded_file(
+                // Temp image location
+                $image_file["tmp_name"],
+
+                // New image location, __DIR__ is the location of the current PHP file
+                $target_file
+            );
+
+            $data = file_get_contents($target_file);
+            $IdImage = $data;
+            unlink($target_file);
+        }
+
+        $statement->execute([
+            'MoldName' => $_POST['MoldName'],
+            'NoMold' => $_POST['NoMold'],
+            'TubID' => $_POST['TubID'],
+            'DimA' => $_POST['DimA'],
+            'DimB' => $_POST['DimB'],
+            'DimC' => $_POST['DimC'],
+            'DimD' => $_POST['DimD'],
+            'DimE' => $_POST['DimE'],
+            'DimF' => $_POST['DimF'],
+            'DimG' => $_POST['DimG'],
+            'DimH' => $_POST['DimH'],
+            'Comments' => $_POST['Comments'],
+            'IdImage' => $IdImage,
+            'FrontName' => $_POST['FrontName'],
+            'BackName' => $_POST['BackName'],
+            'SideName' => $_POST['SideName'],
+            'MatTubName' => $_POST['MatTubName'],
+            'Price' => $_POST['Price'],
+
+        ]);
+
+        return;
+
+    }
+
     function getBathtubByTubID($TubID)
     {
         $query = "select * from bathtub where TubID = :TubID";
@@ -338,6 +393,19 @@ class Bathtub
         $statement->execute(['TubID' => $TubID]);
 
         return $statement->fetchAll();
+    }
+
+    function deleteBathtub()
+    {
+
+        $query = "delete from bathtub where TubID = :TubID";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute(['TubID' => $_POST['TubID']]);
+
+        return;
+
     }
 
 

@@ -96,11 +96,19 @@ require(dirname(__DIR__) . "/models/tolerance.php");
 
       //echo '<a href="http://localhost/bathfinder/user/logout">Logout</a>';
       echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
+      echo '<br/>';
 
+      echo '<a href="http://localhost/bathfinder/index.php?resource=shower&action=search">Shower</a>';
+      //echo '<a href="http://localhost/bathfinder/bathtub/search">Shower</a>';
       echo '<br/>';
 
       //echo '<a href="http://localhost/bathfinder/bathtub/list">List</a>';
       echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=list">List</a>';
+      echo '<br/>';
+
+      //echo '<a href="http://localhost/bathfinder/bathtub/create">List</a>';
+      echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=create">Create</a>';
+      echo '<br/>';
 
       if (isset($_POST)) {
         if (isset($_POST['submitButton'])) {
@@ -298,7 +306,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
                                 <td>" . $b['MatTubName'] . "</td>
                                 <td>" . $b['Comments'] . "</td>
                                 <td>
-                                 <a href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&TubID=" . $b['TubID'] . "'>Print</a>
+                                <a target='_blank' href='http://localhost/bathfinder/index.php?resource=bathtub&action=print&TubID=" . $b['TubID'] . "'>Print</a>
                                 </td>
                               </tr>
                         
