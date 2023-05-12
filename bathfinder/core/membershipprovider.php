@@ -27,6 +27,7 @@ class MembershipProvider{
 
     function isLoggedIn(){
 
+        
         session_name("bathfinder");
 
         session_start();

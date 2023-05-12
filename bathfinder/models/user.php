@@ -111,6 +111,7 @@ class User{
         if(password_verify($this->password, $dbPassword)){
             echo 'true';
             $verified = true;
+            $this->membershipProvider->login();
 
         }
 
@@ -189,6 +190,28 @@ class User{
 
         $this->username = $username;
 
+    }
+
+    function getAll(){
+
+        $query = "select * from user";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute();
+
+        return $statement->fetchAll();
+
+    }
+
+    function getUserById($id){
+        $query = "select * from user where user_id = :userId";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute(['usrId' => $id]);
+
+        return $statement->fetchAll();
     }
    
     public function getUserId() {

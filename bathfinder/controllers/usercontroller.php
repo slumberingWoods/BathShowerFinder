@@ -26,12 +26,19 @@ class UserController{
                         if(isset($_POST['username']) && isset($_POST['password']) ){
 
                             $this->user->setUsername($_POST['username']);
+                            
+                            $test = $this->user->getUserByUsername($_POST['username']);
+
+                            if (empty($test)){
+                              echo "User with that username does not exist";
+                              
+                            }else{
 
                             $this->user = $this->user->getUserByUsername($_POST['username'])[0];
-                         
+
                             $this->user->setPassword($_POST['password']);
                            
-                            echo $this->user->getPassword();
+                            //echo $this->user->getPassword();
 
                             // Based on the action determine which Model function to call
                             // We have two options:
@@ -41,6 +48,7 @@ class UserController{
                             // OR we will have to do a conditional logic to check what the action is and call
                             // the appropriate function in the model
                             $this->user->$action();
+                            }
                         }
                     }else if($action == 'create'){
                         if(isset($_POST['username']) && isset($_POST['password']) &&
@@ -109,6 +117,27 @@ class UserController{
 
                     $view = new $viewClass($this->user);
 
+                    if ($action == 'list'){
+                        if (isset($_COOKIE['bathfinderuser'])){
+                            $username = $_COOKIE['bathfinderuser'];
+                            $this->user = $this->user->getUserByUsername($username)[0];
+                        }
+                        $view = new $viewClass($this->user);
+
+                        $usersList = $this->user->getAll(); 
+
+                        $view->render($usersList);
+                    }else if ($action == 'update'){
+                        if (isset($_COOKIE['bathfinderuser'])){
+                            $username = $_COOKIE['bathfinderuser'];
+                            $this->user = $this->user->getUserByUsername($username)[0];
+                        }
+                        $view = new $viewClass($this->user);
+                        
+                        $usr = $this->user->getUserById($_POST['id']); 
+
+                        $view->render($usr);
+                    }
                 }
             }
         }
