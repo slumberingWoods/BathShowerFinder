@@ -6,6 +6,10 @@ namespace views;
 <html>
 
 <head>
+
+  <title>Bathtub List</title>
+  <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
+
   <style>
     #bathtubsTable {
       font-family: Arial, Helvetica, sans-serif;

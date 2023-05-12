@@ -6,6 +6,10 @@ namespace views;
 <html>
 
 <head>
+
+    <title>Bathtub Print</title>
+    <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
+
     <style>
         #bathtubsTable {
             font-family: Arial, Helvetica, sans-serif;
@@ -73,7 +77,7 @@ namespace views;
         function render($data)
         {
             $bathtub = $data[0];
-            
+
             $html = '<table id="bathtubsTable">';
             $html .= "<th>MoldName</th>
                     <th>NoMold</th>
@@ -87,7 +91,7 @@ namespace views;
                     <th>DimH</th>
                     <th>Price</th>";
 
-                $html .= "<tr>
+            $html .= "<tr>
                         <td>" . $bathtub['MoldName'] . "</td>
                         <td>" . $bathtub['NoMold'] . "</td>
                         <td>" . $bathtub['DimA'] . "</td>

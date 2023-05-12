@@ -6,6 +6,10 @@ namespace views;
 <html>
 
 <head>
+
+  <title>Shower List</title>
+  <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
+
   <style>
     #showersTable {
       font-family: Arial, Helvetica, sans-serif;

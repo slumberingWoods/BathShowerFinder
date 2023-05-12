@@ -6,6 +6,10 @@ namespace views;
 <html>
 
 <head>
+
+    <title>Shower Print</title>
+    <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
+
     <style>
         #showersTable {
             font-family: Arial, Helvetica, sans-serif;
@@ -73,7 +77,7 @@ namespace views;
         function render($data)
         {
             $shower = $data[0];
-            
+
             $html = '<table id="showersTable">';
             $html .= "<th>MoldName</th>
                     <th>NoMold</th>
@@ -85,7 +89,7 @@ namespace views;
                     <th>DimF</th>
                     <th>Price</th>";
 
-                $html .= "<tr>
+            $html .= "<tr>
                         <td>" . $shower['MoldName'] . "</td>
                         <td>" . $shower['NoMold'] . "</td>
                         <td>" . $shower['DimA'] . "</td>

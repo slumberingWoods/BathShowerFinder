@@ -8,6 +8,9 @@ namespace views;
 
 <head>
 
+    <title>Shower Update</title>
+    <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
+
     <style>
         form {
             display: flex;

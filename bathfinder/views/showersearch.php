@@ -7,6 +7,10 @@ require(dirname(__DIR__) . "/models/tolerance.php");
 <html>
 
 <head>
+
+  <title>Shower Search</title>
+  <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
+
   <style>
     #showersTable {
       font-family: Arial, Helvetica, sans-serif;

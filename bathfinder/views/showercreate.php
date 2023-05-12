@@ -2,11 +2,14 @@
 
 namespace views;
 
-    ?>
+?>
 
 <html>
 
 <head>
+
+    <title>Shower Create</title>
+    <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
 
     <style>
         form {
