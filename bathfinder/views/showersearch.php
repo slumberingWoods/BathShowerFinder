@@ -110,7 +110,7 @@ require(dirname(__DIR__) . "/models/tolerance.php");
       echo '<a href="http://localhost/bathfinder/index.php?resource=shower&action=list">List</a>';
       echo '<br/>';
 
-      //echo '<a href="http://localhost/bathfinder/shower/create">List</a>';
+      //echo '<a href="http://localhost/bathfinder/shower/create">Create</a>';
       echo '<a href="http://localhost/bathfinder/index.php?resource=shower&action=create">Create</a>';
       echo '<br/>';
 
@@ -183,20 +183,20 @@ require(dirname(__DIR__) . "/models/tolerance.php");
                 <input type="text" id="DimFMinus" name="DimFMinus" value="' . (isset($_POST['DimFMinus']) ? $_POST['DimFMinus'] : "0") . '"><br><br>
 
                 <h2>Advanced Options</h2>
-                <label for="FrontModel">Front Model</label><br>
-                <select id="FrontModel" name="FrontModel">
+                <label for="Front">Front</label><br>
+                <select id="Front" name="Front">
                   <option value="">-</option>
-                  <option value="Square" ' . ((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Square') ? 'selected' : '') . '>Square</option>
-                  <option value="Semi-Round" ' . ((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Semi-Round') ? 'selected' : '') . '>Semi-Round</option>
-                  <option value="Round" ' . ((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Square') ? 'Round' : '') . '>Round</option>
+                  <option value="Square" ' . ((isset($_POST['Front']) && $_POST['Front'] == 'Square') ? 'selected' : '') . '>Square</option>
+                  <option value="Semi-Round" ' . ((isset($_POST['Front']) && $_POST['Front'] == 'Semi-Round') ? 'selected' : '') . '>Semi-Round</option>
+                  <option value="Round" ' . ((isset($_POST['Front']) && $_POST['Front'] == 'Square') ? 'Round' : '') . '>Round</option>
                 </select><br><br>
 
-                <label for="DoorModel">Door Model</label><br>
-                <select id="DoorModel" name="DoorModel">
+                <label for="Door">Door</label><br>
+                <select id="Door" name="Door">
                   <option value="">-</option>  
-                  <option value="Square" ' . ((isset($_POST['DoorModel']) && $_POST['DoorModel'] == 'Square') ? 'selected' : '') . '>Square</option>
-                  <option value="Semi-Round" ' . ((isset($_POST['DoorModel']) && $_POST['DoorModel'] == 'Semi-Round') ? 'selected' : '') . '>Semi-Round</option>
-                  <option value="Round" ' . ((isset($_POST['DoorModel']) && $_POST['DoorModel'] == 'Round') ? 'selected' : '') . '>Round</option>
+                  <option value="Clear" ' . ((isset($_POST['Door']) && $_POST['Door'] == 'Clear') ? 'selected' : '') . '>Clear</option>
+                  <option value="Frosted" ' . ((isset($_POST['Door']) && $_POST['Door'] == 'Frosted') ? 'selected' : '') . '>Frosted</option>
+                  <option value="Stained" ' . ((isset($_POST['Door']) && $_POST['Door'] == 'Stained') ? 'selected' : '') . '>Stained</option>
                 </select><br><br>
 
                 <label for="Material">Material</label><br>

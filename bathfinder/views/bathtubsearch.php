@@ -202,20 +202,20 @@ require(dirname(__DIR__) . "/models/tolerance.php");
                 <input type="text" id="DimHMinus" name="DimHMinus" value="' . (isset($_POST['DimHMinus']) ? $_POST['DimHMinus'] : "0") . '"><br><br>
 
                 <h2>Advanced Options</h2>
-                <label for="FrontModel">Front Model</label><br>
-                <select id="FrontModel" name="FrontModel">
+                <label for="Front">Front</label><br>
+                <select id="Front" name="Front">
                   <option value="">-</option>
-                  <option value="Square" ' . ((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Square') ? 'selected' : '') . '>Square</option>
-                  <option value="Semi-Round" ' . ((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Semi-Round') ? 'selected' : '') . '>Semi-Round</option>
-                  <option value="Round" ' . ((isset($_POST['FrontModel']) && $_POST['FrontModel'] == 'Square') ? 'Round' : '') . '>Round</option>
+                  <option value="Square" ' . ((isset($_POST['Front']) && $_POST['Front'] == 'Square') ? 'selected' : '') . '>Square</option>
+                  <option value="Semi-Round" ' . ((isset($_POST['Front']) && $_POST['Front'] == 'Semi-Round') ? 'selected' : '') . '>Semi-Round</option>
+                  <option value="Round" ' . ((isset($_POST['Front']) && $_POST['Front'] == 'Square') ? 'Round' : '') . '>Round</option>
                 </select><br><br>
 
-                <label for="BackModel">Back Model</label><br>
-                <select id="BackModel" name="BackModel">
+                <label for="Back">Back</label><br>
+                <select id="Back" name="Back">
                   <option value="">-</option>  
-                  <option value="Square" ' . ((isset($_POST['BackModel']) && $_POST['BackModel'] == 'Square') ? 'selected' : '') . '>Square</option>
-                  <option value="Semi-Round" ' . ((isset($_POST['BackModel']) && $_POST['BackModel'] == 'Semi-Round') ? 'selected' : '') . '>Semi-Round</option>
-                  <option value="Round" ' . ((isset($_POST['BackModel']) && $_POST['BackModel'] == 'Round') ? 'selected' : '') . '>Round</option>
+                  <option value="Square" ' . ((isset($_POST['Back']) && $_POST['Back'] == 'Square') ? 'selected' : '') . '>Square</option>
+                  <option value="Semi-Round" ' . ((isset($_POST['Back']) && $_POST['Back'] == 'Semi-Round') ? 'selected' : '') . '>Semi-Round</option>
+                  <option value="Round" ' . ((isset($_POST['Back']) && $_POST['Back'] == 'Round') ? 'selected' : '') . '>Round</option>
                 </select><br><br>
 
                 <label for="Side">Side</label><br>

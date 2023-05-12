@@ -11,33 +11,6 @@ namespace views;
     <title>Bathtub Create</title>
     <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
 
-    <style>
-        form {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            max-width: 280px;
-        }
-
-        label {
-            display: flex;
-            flex-basis: 15%;
-            min-width: 84px;
-        }
-
-        [type=text] {
-            display: flex;
-            flex-basis: 85%;
-            max-width: 150px;
-            max-height: 21px;
-        }
-
-        [type=submit] {
-            height: 40px;
-            width: 120px;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -154,21 +127,34 @@ namespace views;
             <input type='file' id='Image' name='Image' accept='image/*'>
             <br>
     
-            <label for='FrontName'>Front</label>
-            <input type='text' id='FrontName' name='FrontName' >
-            <br>
-    
-            <label for='BackName'>Back</label>
-            <input type='text' id='BackName' name='BackName' >
-            <br>
-    
-            <label for='SideName'>Side</label>
-            <input type='text' id='SideName' name='SideName' >
-            <br>
-    
-            <label for='MatTubName'>Material</label>
-            <input type='text' id='MatTubName' name='MatTubName' >
-            <br>
+            <label for='FrontName'>Front</label><br>
+                <select id='FrontName' name='FrontName'>
+                  <option value='Square'>Square</option>
+                  <option value='Semi-Round'>Semi-Round</option>
+                  <option value='Round'>Round</option>
+                </select><br>
+
+                <label for='BackName'>Back</label><br>
+                <select id='BackName' name='BackName'>
+                  <option value='Square'>Square</option>
+                  <option value='Semi-Round'>Semi-Round</option>
+                  <option value='Round'>Round</option>
+                </select><br>
+
+                <label for='SideName'>Side</label><br>
+                <select id='SideName' name='SideName'>
+                  <option value='Parallel'>Parallel</option>
+                  <option value='Bowed'>Bowed</option>
+                  <option value='Tapered'>Tapered</option>
+                </select><br>
+
+                <label for='MatTubName'>Material</label><br>
+                <select id='MatTubName' name='MatTubName'>
+                  <option value='Cast'>Cast</option>
+                  <option value='Steel'>Steel</option>
+                  <option value='Fiberglass'>Fiberglass</option>
+                  <option value='CulturedMarble'>Cultured Marble</option>
+                </select><br>
     
             <label for='Comments'>Comments</label>
             <input type='text' id='Comments' name='Comments' >

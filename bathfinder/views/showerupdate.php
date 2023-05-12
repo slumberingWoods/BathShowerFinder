@@ -11,33 +11,6 @@ namespace views;
     <title>Shower Update</title>
     <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
 
-    <style>
-        form {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            max-width: 280px;
-        }
-
-        label {
-            display: flex;
-            flex-basis: 15%;
-            min-width: 84px;
-        }
-
-        [type=text] {
-            display: flex;
-            flex-basis: 85%;
-            max-width: 150px;
-            max-height: 21px;
-        }
-
-        [type=submit] {
-            height: 40px;
-            width: 120px;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -83,12 +56,20 @@ namespace views;
             echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
             echo '<br/>';
 
+            //echo '<a href="http://localhost/bathfinder/bathtub/list">Bathtub</a>';
+            echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=list">Bathtub</a>';
+            echo '<br/>';
+
             echo '<a href="http://localhost/bathfinder/index.php?resource=shower&action=search">Search</a>';
             //echo '<a href="http://localhost/bathfinder/shower/search">Search</a>';
             echo '<br/>';
 
             //echo '<a href="http://localhost/bathfinder/shower/list">List</a>';
             echo '<a href="http://localhost/bathfinder/index.php?resource=shower&action=list">List</a>';
+            echo '<br/>';
+
+            //echo '<a href="http://localhost/bathfinder/shower/create">Create</a>';
+            echo '<a href="http://localhost/bathfinder/index.php?resource=shower&action=create">Create</a>';
             echo '<br/>';
 
             echo '<h3>Edit Shower</h3>';
@@ -152,17 +133,27 @@ namespace views;
             <input type='file' id='Image' name='Image' accept='image/*'>
             <br>
     
-            <label for='FrontName'>Front</label>
-            <input type='text' id='FrontName' name='FrontName' value='" . $shower['FrontName'] . "'>
-            <br>
-    
-            <label for='DoorName'>Door</label>
-            <input type='text' id='DoorName' name='DoorName' value='" . $shower['DoorName'] . "'>
-            <br>
-    
-            <label for='MatShowerName'>Material</label>
-            <input type='text' id='MatShowerName' name='MatShowerName' value='" . $shower['MatShowerName'] . "'>
-            <br>
+            <label for='FrontName'>Front</label><br>
+                <select id='FrontName' name='FrontName'>
+                  <option value='Square' " . (($shower['FrontName'] == 'Square') ? 'selected' : '') . ">Square</option>
+                  <option value='Semi-Round' " . (($shower['FrontName'] == 'Semi-Round') ? 'selected' : '') . ">Semi-Round</option>
+                  <option value='Round' " . (($shower['FrontName'] == 'Square') ? 'Round' : '') . ">Round</option>
+                </select><br>
+
+                <label for='DoorName'>Door</label><br>
+                <select id='DoorName' name='DoorName'>
+                  <option value='Clear' " . (($shower['DoorName'] == 'Clear') ? 'selected' : '') . ">Clear</option>
+                  <option value='Frosted' " . (($shower['DoorName'] == 'Frosted') ? 'selected' : '') . ">Frosted</option>
+                  <option value='Stained' " . (($shower['DoorName'] == 'Stained') ? 'selected' : '') . ">Stained</option>
+                </select><br>
+
+                <label for='MatShowerName'>Material</label><br>
+                <select id='MatShowerName' name='MatShowerName'>
+                  <option value='Cast' " . (($shower['MatShowerName'] == 'Cast') ? 'selected' : '') . ">Cast</option>
+                  <option value='Steel' " . (($shower['MatShowerName'] == 'Steel') ? 'selected' : '') . ">Steel</option>
+                  <option value='Fiberglass' " . (($shower['MatShowerName'] == 'Fiberglass') ? 'selected' : '') . ">Fiberglass</option>
+                  <option value='CulturedMarble' " . (($shower['MatShowerName'] == 'CulturedMarble') ? 'selected' : '') . ">Cultured Marble</option>
+                </select><br>
     
             <label for='Comments'>Comments</label>
             <input type='text' id='Comments' name='Comments' value='" . $shower['Comments'] . "'>

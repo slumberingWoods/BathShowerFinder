@@ -11,33 +11,6 @@ namespace views;
     <title>Bathtub Update</title>
     <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
 
-    <style>
-        form {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            max-width: 280px;
-        }
-
-        label {
-            display: flex;
-            flex-basis: 15%;
-            min-width: 84px;
-        }
-
-        [type=text] {
-            display: flex;
-            flex-basis: 85%;
-            max-width: 150px;
-            max-height: 21px;
-        }
-
-        [type=submit] {
-            height: 40px;
-            width: 120px;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -83,12 +56,20 @@ namespace views;
             echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
             echo '<br/>';
 
+            echo '<a href="http://localhost/bathfinder/index.php?resource=shower&action=list">Shower</a>';
+            //echo '<a href="http://localhost/bathfinder/bathtub/list">Shower</a>';
+            echo '<br/>';
+
             echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=search">Search</a>';
             //echo '<a href="http://localhost/bathfinder/bathtub/search">Search</a>';
             echo '<br/>';
 
             //echo '<a href="http://localhost/bathfinder/bathtub/list">List</a>';
             echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=list">List</a>';
+            echo '<br/>';
+
+            //echo '<a href="http://localhost/bathfinder/bathtub/create">List</a>';
+            echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=create">Create</a>';
             echo '<br/>';
 
             echo '<h3>Edit Bathtub</h3>';
@@ -160,21 +141,34 @@ namespace views;
             <input type='file' id='Image' name='Image' accept='image/*'>
             <br>
     
-            <label for='FrontName'>Front</label>
-            <input type='text' id='FrontName' name='FrontName' value='" . $bathtub['FrontName'] . "'>
-            <br>
-    
-            <label for='BackName'>Back</label>
-            <input type='text' id='BackName' name='BackName' value='" . $bathtub['BackName'] . "'>
-            <br>
-    
-            <label for='SideName'>Side</label>
-            <input type='text' id='SideName' name='SideName' value='" . $bathtub['SideName'] . "'>
-            <br>
-    
-            <label for='MatTubName'>Material</label>
-            <input type='text' id='MatTubName' name='MatTubName' value='" . $bathtub['MatTubName'] . "'>
-            <br>
+            <label for='FrontName'>Front</label><br>
+                <select id='FrontName' name='FrontName'>
+                  <option value='Square' " . (($bathtub['FrontName'] == 'Square') ? 'selected' : '') . ">Square</option>
+                  <option value='Semi-Round' " . (($bathtub['FrontName'] == 'Semi-Round') ? 'selected' : '') . ">Semi-Round</option>
+                  <option value='Round' " . (($bathtub['FrontName'] == 'Square') ? 'Round' : '') . ">Round</option>
+                </select><br>
+
+                <label for='BackName'>Back</label><br>
+                <select id='BackName' name='BackName'>
+                  <option value='Square' " . (($bathtub['BackName'] == 'Square') ? 'selected' : '') . ">Square</option>
+                  <option value='Semi-Round' " . (($bathtub['BackName'] == 'Semi-Round') ? 'selected' : '') . ">Semi-Round</option>
+                  <option value='Round' " . (($bathtub['BackName'] == 'Round') ? 'selected' : '') . ">Round</option>
+                </select><br>
+
+                <label for='SideName'>Side</label><br>
+                <select id='SideName' name='SideName'>
+                  <option value='Parallel' " . (($bathtub['SideName'] == 'Parallel') ? 'selected' : '') . ">Parallel</option>
+                  <option value='Bowed' " . (($bathtub['SideName'] == 'Bowed') ? 'selected' : '') . ">Bowed</option>
+                  <option value='Tapered' " . (($bathtub['SideName'] == 'Tapered') ? 'selected' : '') . ">Tapered</option>
+                </select><br>
+
+                <label for='MatTubName'>Material</label><br>
+                <select id='MatTubName' name='MatTubName'>
+                  <option value='Cast' " . (($bathtub['MatTubName'] == 'Cast') ? 'selected' : '') . ">Cast</option>
+                  <option value='Steel' " . (($bathtub['MatTubName'] == 'Steel') ? 'selected' : '') . ">Steel</option>
+                  <option value='Fiberglass' " . (($bathtub['MatTubName'] == 'Fiberglass') ? 'selected' : '') . ">Fiberglass</option>
+                  <option value='CulturedMarble' " . (($bathtub['MatTubName'] == 'CulturedMarble') ? 'selected' : '') . ">Cultured Marble</option>
+                </select><br>
     
             <label for='Comments'>Comments</label>
             <input type='text' id='Comments' name='Comments' value='" . $bathtub['Comments'] . "'>
