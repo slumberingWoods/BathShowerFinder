@@ -4,6 +4,11 @@
 ?>
 <html>
 <head>
+
+    <title>Sales List</title>
+    <link rel="icon" type="image/x-icon" href="/bathfinder/images/favicon.ico">
+
+</head>
 <style>
 #salesTable {
   font-family: Arial, Helvetica, sans-serif;
@@ -28,7 +33,6 @@
   color: white;
 }
 </style>
-</head>
 <body>
 <?php
 
@@ -49,8 +53,8 @@ class SalesList{
       }else{//user not logged in
 
         header('HTTP/1.1 401 Unauthorized');
-        //header('Location: http://localhost/bathfinder/user/login');
-        header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
+        header('Location: http://localhost/bathfinder/user/login');
+        //header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
         
       } 
   }
@@ -61,10 +65,10 @@ class SalesList{
 
     echo '<br/>';
 
-    echo '<a href="http://localhost/bathfinder/index.php?resource=user&action=logout">Logout</a>';
+    echo '<a href="http://localhost/bathfinder/user/logout">Logout</a>';
 
     echo '<br/>';
-    echo '<a href="http://localhost/bathfinder/index.php?resource=bathtub&action=list">Bathtubs</a>';
+    echo '<a href="http://localhost/bathfinder/bathtub/list">Bathtubs</a>';
 
     echo '<br/>';
     $sales = $data[0];
@@ -89,25 +93,25 @@ class SalesList{
                 <td>".$s['customerName']."</td>
                 <td>".$s['saleAmount']."</td>
                 <td>".$bool."</td>
-                <td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=update&id='.$s['salesId'].'" class="button">Update</a></td>'.
-                "<td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=delete&id='.$s['salesId'].'" class="button" onclick="return confirm("Are you sure?")>Delete</a></td>'.
+                <td>".'<a href="http://localhost/bathfinder/sales/update/'.$s['salesId'].'" class="button">Update</a></td>'.
+                "<td>".'<a href="http://localhost/bathfinder/sales/delete/'.$s['salesId'].'" class="button">Delete</a></td>'.
                 "</tr>";
     }
     $html .= "</table>";
 
-    $html .='<a href="http://localhost/bathfinder/index.php?resource=sales&action=create">Create Sales</a>';
+    $html .='<a href="http://localhost/bathfinder/sales/create">Create Sales</a>';
 
     $html .= '<br/>';
 
-    $html .='<a href="http://localhost/bathfinder/index.php?resource=sales&action=listbyuser">Find sales by user</a>';
+    $html .='<a href="http://localhost/bathfinder/sales/listbyuser">Find sales by user</a>';
 
     $html .= '<br/>';
 
-    $html .='<a href="http://localhost/bathfinder/index.php?resource=sales&action=listbyproduct">Find sales by product type</a>';
+    $html .='<a href="http://localhost/bathfinder/sales/listbyproduct">Find sales by product type</a>';
 
     $html .= '<br/>';
 
-    $html .='<a href="http://localhost/bathfinder/index.php?resource=sales&action=listbyproductid">Find sales by product id</a>';
+    $html .='<a href="http://localhost/bathfinder/sales/listbyproductid">Find sales by product id</a>';
 
     $html .= '<br/>';
 
