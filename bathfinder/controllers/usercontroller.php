@@ -135,9 +135,15 @@ class UserController{
                         }
                         $view = new $viewClass($this->user);
                         
-                        $usr = $this->user->getUserById($_POST['id']); 
+                       
+                        
 
-                        $view->render($usr);
+                        $view->render($this->user->getUserById($_GET['id']));
+                    }else if($action == 'delete') {
+                        if(isset($_POST['confirm'])) {
+                            $this->user->$action();
+                            header("location:http://localhost/bathfinder/user/list");
+                        }
                     }
                 }
             }

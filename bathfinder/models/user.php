@@ -201,12 +201,54 @@ class User{
 
     }
 
-    function getUserById($id){
-        $query = "select * from user where user_id = :userId";
+    public function updateUser(){
+        $newPass = "";
+        $isAdm = false;
+        $updatePass = false;
+        if ($_POST['isAdmin'] == 'true'){
+            $isAdm = true;
+        }
+
+        if ($_POST['password'] == ""){
+            $updatePass = false;
+        }else{
+            $newPass = $_POST['password'];
+            $updatePass = true;
+        }
+        
+        $query = "update user set username = :username, firstName = :firstName, 
+                lastName = :lastName, email = :email, isAdmin = :isAdmin where user_id = :user_id";
+        
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute(['username' => $_POST['username'], 'firstName' => $_POST['firstName'], 
+        'lastName' => $_POST['lastName'], 'email' => $_POST['email'], 'isAdmin' => $isAdm, 'user_id' => $_POST['usrId']]);
+
+        if ($updatePass){
+            $hashedPassword = password_hash($newPass, PASSWORD_DEFAULT);
+
+            $query2 = "update user set password = :password where user_id = :user_id";
+
+            $statement2 = $this->dbConnection->prepare($query2);
+
+            $statement2->execute(['password'=>$hashedPassword, 'user_id'=>$_POST['usrId']]);
+        }
+    }
+
+    public function delete(){
+        $query = "delete from user where user_id = :user_id";
 
         $statement = $this->dbConnection->prepare($query);
 
-        $statement->execute(['usrId' => $id]);
+        $statement->execute(['user_id'=>$_GET['id']]);
+    }
+
+    public function getUserById($id){
+        $query = "select * from user where user_id = :user_id";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute(['user_id' => $id]);
 
         return $statement->fetchAll();
     }

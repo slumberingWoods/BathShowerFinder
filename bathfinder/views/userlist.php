@@ -92,7 +92,7 @@ class UserList{
                 <td>".$u['email']."</td>
                 <td>".$bool."</td>
                 <td>".'<a href="http://localhost/bathfinder/index.php?resource=user&action=update&id='.$u['user_id'].'" class="button">Modify</a></td>'.
-                "<td>".'<a href="http://localhost/bathfinder/index.php?resource=sales&action=delete&id='.$u['user_id'].'" class="button" onclick="return confirm("Are you sure?")>Delete</a></td>'.
+                "<td>".'<a href="http://localhost/bathfinder/index.php?resource=user&action=delete&id='.$u['user_id'].'" class="button" onclick="return confirm("Are you sure?")>Delete</a></td>'.
                 "</tr>";
     }
     $html .= "</table>";
