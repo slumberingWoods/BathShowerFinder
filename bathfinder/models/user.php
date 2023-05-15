@@ -105,11 +105,8 @@ class User{
         $dbPassword = $this->getPasswordByUsername();
         // $answer = password_verify($this->password, $dbPassword);
         // echo $answer;
-        echo " ";
-        echo $this->password;
-        echo $dbPassword;
+
         if(password_verify($this->password, $dbPassword)){
-            echo 'true';
             $verified = true;
             $this->membershipProvider->login();
 

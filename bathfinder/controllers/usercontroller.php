@@ -18,7 +18,8 @@ class UserController{
 
                 // Read the user information from the request
                 // and setup a user model object
-                $this->user = new \models\User();                 
+                $this->user = new \models\User();
+                
 
                 if(isset($_POST)){
 
@@ -37,7 +38,7 @@ class UserController{
                             $this->user = $this->user->getUserByUsername($_POST['username'])[0];
 
                             $this->user->setPassword($_POST['password']);
-                           
+                            
                             //echo $this->user->getPassword();
 
                             // Based on the action determine which Model function to call

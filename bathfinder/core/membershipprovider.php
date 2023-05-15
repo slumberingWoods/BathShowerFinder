@@ -28,7 +28,7 @@ class MembershipProvider{
     function isLoggedIn(){
 
         
-        session_name("bathfinder");
+         session_name("bathfinder");
 
         session_start();
 
@@ -49,12 +49,14 @@ class MembershipProvider{
 
     function logout(){
 
+        session_start();
+
         $_SESSION = array();
 
         session_destroy ();
 
-        setcookie('bathfinderuser', $this->user->getUsername(), time()-3600);
-
+        setcookie('bathfinderuser', "", time()-3600);
+        session_write_close();
     }
 
     function generateSecretKey(){

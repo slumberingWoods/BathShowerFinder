@@ -44,13 +44,13 @@ class UserList{
 
       $membershipProvider = $this->user->getMembershipProvider();
 
-      if($membershipProvider->isLoggedIn()){
+      if(isset($_COOKIE['bathfinderuser'])){
         $this->welcomeMessage = 'Welcome '.$this->user->getUsername();
       }else{//user not logged in
 
-        //header('HTTP/1.1 401 Unauthorized');
+        header('HTTP/1.1 401 Unauthorized');
         //header('Location: http://localhost/bathfinder/user/login');
-        //header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
+        header('Location: http://localhost/bathfinder/index.php?resource=user&action=login');
         
       } 
   }
