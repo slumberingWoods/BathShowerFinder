@@ -1,0 +1,218 @@
+commit f75cf9f58f558bb6aa5ee5f6cdb219acb6236fc7
+Author: frouque <farouk.assoum123@gmail.com>
+Date:   Fri May 12 19:30:52 2023 -0400
+
+    fixed drop downs for create and update views for bathtub shower
+
+commit a33c85a6fdb1cafe96621dd16a21950ba4a78e6e
+Author: frouque <farouk.assoum123@gmail.com>
+Date:   Fri May 12 18:49:42 2023 -0400
+
+    404 page
+
+commit e9731279ea8a051ac04edcdfbbd8025930edaaa0
+Author: frouque <farouk.assoum123@gmail.com>
+Date:   Fri May 12 18:43:36 2023 -0400
+
+    page titles and favicon
+
+commit 950c0a020f2af37d56dd93327c6294d70c088475
+Author: frouque <farouk.assoum123@gmail.com>
+Date:   Fri May 12 18:29:26 2023 -0400
+
+    made all shower model views and controller. made create views for bathtub and shower
+
+commit 386682cf2b19b6bac37798b6c3a880cc71809ca9
+Author: Roberto Jr. Cannucci <2065436@edu.vaniercollege.qc.ca>
+Date:   Fri May 12 15:06:46 2023 -0400
+
+    Added user list page and update page, update page still needs work
+
+commit 2c888b9e8daa824ea97f8ea89fb8998aea16228d
+Author: frouque <farouk.assoum123@gmail.com>
+Date:   Thu May 11 17:51:50 2023 -0400
+
+    fixed search
+
+commit 133c0f456e9d78fb9750ff1e7ee48dcbe05fb767
+Merge: e5edc06 cbb0287
+Author: frouque <farouk.assoum123@gmail.com>
+Date:   Thu May 11 17:43:39 2023 -0400
+
+    Merge branch 'main' of https://github.com/slumberingWoods/BathShowerFinder
+
+commit e5edc06beb2bf6a7ff7d645e90ba1d0d6b9c5de4
+Author: frouque <farouk.assoum123@gmail.com>
+Date:   Thu May 11 17:43:20 2023 -0400
+
+    update showers functional
+
+commit cbb0287f20050c9df87799ba20200779b1d5e644
+Author: hallo <strong.victory.2002@gmail.com>
+Date:   Thu May 11 15:40:34 2023 -0400
+
+    add upadate sales
+
+commit 1fbcd3cb4b2cd54897adbf016f8168c164668cc5
+Author: hallo <strong.victory.2002@gmail.com>
+Date:   Thu May 11 15:16:18 2023 -0400
+
+    add upadate sales
+
+commit 926d8dfc524c53b3df9196cb9cbf12f246bf44d3
+Author: Roberto Cannucci <robertojc2003@gmail.com>
+Date:   Thu May 11 13:48:04 2023 -0400
+
+    Links are back to original
+
+commit db9ea713c932e9c60f3f7647df528983958ee6b3
+Author: Roberto Jr. Cannucci <robertojc2003@gmail.com>
+Date:   Tue May 9 13:18:23 2023 -0400
+
+    Fixed rewrite issue, if you still get redirected just try again and it will let you in the second time
+
+commit 1c87c47dadef4ac53018735ee296f0734fbdbd14
+Author: cstuser <robertojc2003@gmail.com>
+Date:   Tue May 9 12:24:33 2023 -0400
+
+    Turned reqrite off and changed a few links back to their old versions until I can get rewrite to work
+
+commit bddbc8cb4ab6f9b51611558534dee0552ccdd5e5
+Author: hallo <strong.victory.2002@gmail.com>
+Date:   Sun May 7 00:28:30 2023 -0400
+
+    add update wip
+
+commit 328e671130c49cc27a6768d9e8b17ca0b1b49b23
+Author: cstuser <robertojc2003@gmail.com>
+Date:   Fri May 5 13:50:53 2023 -0400
+
+    Rewrite now works and all current links have been updated
+
+commit ab91ca6c44dfb7f69a51dfb16ea0ea142835d1e9
+Author: cstuser <robertojc2003@gmail.com>
+Date:   Tue May 2 09:51:29 2023 -0400
+
+    Rewrite functionality works for links that only require resource and action, will work on isolating rewrites for links that also include the id variable
+
+commit 19120ffb15a1012bd1ab3ff6230809e4a084f986
+Author: cstuser <robertojc2003@gmail.com>
+Date:   Fri Apr 28 15:06:55 2023 -0400
+
+    Both save and load tolerances works now
+
+commit 390fbc925323c8d00a6c7803bc40a87f04e7d63c
+Merge: 4081742 2155140
+Author: hallo <strong.victory.2002@gmail.com>
+Date:   Tue Apr 25 17:11:22 2023 -0400
+
+    Merge branch 'sales'
+
+commit 21551408f044f80956c832e6a74338445be97ae4
+Author: hallo <strong.victory.2002@gmail.com>
+Date:   Tue Apr 25 17:01:25 2023 -0400
+
+    test
+
+commit 34a6be4e1e6aaedf3a83a4702b4077d3ffcf5a9d
+Author: hallo <strong.victory.2002@gmail.com>
+Date:   Tue Apr 25 16:44:39 2023 -0400
+
+    add files
+
+commit adc86b06b4a90a78820ab01540cd83d1fba30ed3
+Author: cstuser <strong.victory.2002@gmail.com>
+Date:   Tue Apr 25 11:28:22 2023 -0400
+
+    find sales by user done
+
+commit 40817423a6b9758cc00aae327aafa35372242462
+Author: frouque <54182792+frouque@users.noreply.github.com>
+Date:   Tue Apr 25 10:01:52 2023 -0400
+
+    save tolerances button
+
+commit 339f81ad107b6667502281598f747d9a31a066ef
+Author: cstuser <strong.victory.2002@gmail.com>
+Date:   Tue Apr 25 09:51:29 2023 -0400
+
+    new branch sales
+
+commit 38915e02e27941a4ec9e2d425479f03b7d4f6d10
+Author: cstuser <robertojc2003@gmail.com>
+Date:   Tue Apr 25 09:47:23 2023 -0400
+
+    added save tolerance feature
+
+commit 619299111db540599faa89bd1fac73d4ea61e0e7
+Author: frouque <54182792+frouque@users.noreply.github.com>
+Date:   Tue Apr 25 08:13:56 2023 -0400
+
+    test
+
+commit 47b8a5d001f96faa6ac34ab35df9dfe2a65db286
+Merge: de6e80e 8671f68
+Author: hallo <strong.victory.2002@gmail.com>
+Date:   Mon Apr 24 22:16:28 2023 -0400
+
+    Merge branch 'main' of https://github.com/slumberingWoods/BathShowerFinder
+
+commit de6e80e0fe0c8f319992e2f8377eb9a9891fbdcc
+Author: hallo <strong.victory.2002@gmail.com>
+Date:   Mon Apr 24 22:16:18 2023 -0400
+
+    added sales
+
+commit 8671f684a8b59df5c0a562ce6bc74e148159747a
+Author: cstuser <robertojc2003@gmail.com>
+Date:   Mon Apr 24 10:31:38 2023 -0400
+
+    Logout now works, started code for savinf tolerances
+
+commit ef46e1b96bde3aaf5a6745761e86ac48077cc679
+Author: Roberto Jr. Cannucci <2065436@edu.vaniercollege.qc.ca>
+Date:   Mon Apr 24 08:48:06 2023 -0400
+
+    Created Tolerance model
+
+commit 3d9cd163fa949a0908bcf9efdefd2f3ac7fddd6a
+Author: frouque <farouk.assoum123@gmail.com>
+Date:   Sat Apr 22 12:26:51 2023 -0400
+
+    worked on bathtub search
+
+commit 02aab903dcba018a757ef0520f9143e26e4004f0
+Author: frouque <farouk.assoum123@gmail.com>
+Date:   Sat Apr 22 02:41:47 2023 -0400
+
+    added data to bathtub table, coded bathtub controller, shower controller, bathtub list, started bathtub search
+
+commit 7e76903bbbe6b2524685b0ec1b3eec9f827bbaef
+Author: cstuser <robertojc2003@gmail.com>
+Date:   Fri Apr 21 14:25:49 2023 -0400
+
+    Login works now
+
+commit 650bcda27d5936df4d87eb2339884ec8c636f92b
+Author: frouque <54182792+frouque@users.noreply.github.com>
+Date:   Thu Apr 20 12:25:47 2023 -0400
+
+    sql files for users, tolerances, bathub, shower. created all model, view, controller files for bathtub and shower.
+
+commit 16f6131d1ecc7c9026ccf2b54ac910a8663583d0
+Author: Roberto Jr. Cannucci <2065436@edu.vaniercollege.qc.ca>
+Date:   Wed Apr 19 14:58:31 2023 -0400
+
+    Fixed a few issues, but login still needs more work
+
+commit e20d80c33d2cd9e64948b02ed85aa0874eea2ef2
+Author: Roberto Cannucci <robertocannucci@Robertos-MacBook-Pro.local>
+Date:   Wed Apr 19 11:07:13 2023 -0400
+
+    Created tolerance and user table in database, also did the login for the user
+
+commit 5b81f7462c928e78545d49731ffd1f96a616e989
+Author: Thang Manh Tran <89657112+slumberingWoods@users.noreply.github.com>
+Date:   Tue Apr 18 10:13:39 2023 -0400
+
+    Initial commit
